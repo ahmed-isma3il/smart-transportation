@@ -258,7 +258,7 @@ class OrganizerCardDetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
-              AssetsManager.Ellipse_icon,
+              AssetsManager.ellipse_icon,
               height: 40.h,
               width: 40.w,
             ),

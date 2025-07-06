@@ -18,7 +18,7 @@ void main() {
            
         debugShowCheckedModeBanner: false,
         onGenerateRoute: (settings) =>OnGenerateRoute.router(settings) ,
-            initialRoute:OnGenerateRoute.welcome  ,
+            initialRoute:OnGenerateRoute.home  ,
        
       ),
     );

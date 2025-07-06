@@ -8,6 +8,7 @@ class ServicesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+           backgroundColor: Colors.white,
        appBar: AppBar(iconTheme: IconThemeData(color: Colors.black),),
       body: ServicesViewBody());
   }

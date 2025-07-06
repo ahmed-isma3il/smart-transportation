@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:member/config/app_text_styles.dart';
+import 'package:member/core/helper/on_generate_route.dart';
 
 class AddressDetailsScreen extends StatelessWidget {
   const AddressDetailsScreen({super.key});
@@ -10,14 +11,15 @@ class AddressDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.transparent,iconTheme: IconThemeData(color: Colors.black,),title:      Text(
-                        "Address Details",
-                        style: TextStyle(
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.bold,
-                        
-                        ),
-                      ),),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        iconTheme: IconThemeData(color: Colors.black),
+        title: Text(
+          "Address Details",
+          style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
+        ),
+      ),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
@@ -32,7 +34,6 @@ class AddressDetailsScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // ⬅ Back + Title
-            
                   SizedBox(height: 24.h),
 
                   // 🌍 OpenStreetMap
@@ -50,7 +51,6 @@ class AddressDetailsScreen extends StatelessWidget {
                           center: LatLng(30.0444, 31.2357), // Cairo, Egypt
                           zoom: 13.0,
                           onTap: (tapPosition, latlng) {
-                   
                             debugPrint('Selected location: $latlng');
                           },
                         ),
@@ -60,7 +60,6 @@ class AddressDetailsScreen extends StatelessWidget {
                                 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
                             subdomains: const ['a', 'b', 'c'],
                           ),
-                       
                         ],
                       ),
                     ),
@@ -81,10 +80,7 @@ class AddressDetailsScreen extends StatelessWidget {
                   _buildTextField(),
 
                   _buildLabel("Additional Details:"),
-                  _buildTextField(
-                    minLines: 3,
-                    maxLines: 3,
-                  ),
+                  _buildTextField(minLines: 3, maxLines: 3),
 
                   SizedBox(height: 24.h),
 
@@ -93,7 +89,12 @@ class AddressDetailsScreen extends StatelessWidget {
                     width: double.infinity,
                     height: 44.h,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(
+                          context,
+                          OnGenerateRoute.requestSent,
+                        );
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF63A8D3),
                         shape: RoundedRectangleBorder(
@@ -118,10 +119,7 @@ class AddressDetailsScreen extends StatelessWidget {
   Widget _buildLabel(String text) {
     return Padding(
       padding: EdgeInsets.only(top: 16.h, bottom: 6.h),
-      child: Text(
-        text,
-        style:AppTextStyles.semiBold
-      ),
+      child: Text(text, style: AppTextStyles.semiBold),
     );
   }
 
@@ -130,8 +128,7 @@ class AddressDetailsScreen extends StatelessWidget {
       minLines: minLines,
       maxLines: maxLines,
       decoration: InputDecoration(
-        contentPadding:
-            EdgeInsets.symmetric(vertical: 10.h, horizontal: 12.w),
+        contentPadding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 12.w),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.r),
           borderSide: BorderSide(color: Colors.blue.shade100),

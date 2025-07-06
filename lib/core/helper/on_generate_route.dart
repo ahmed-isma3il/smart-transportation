@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:member/features/address_details_screen/presentation/views/address_details_screen.dart';
+import 'package:member/features/home/presentation/views/home.dart';
+import 'package:member/features/pending_confirmation/presentation/views/request_is_pending.dart';
+import 'package:member/features/pending_confirmation/presentation/views/request_sent.dart';
 import 'package:member/features/service/presentation/views/servies_view.dart';
 import 'package:member/features/step2/presentation/views/step2_view.dart';
 import 'package:member/features/step3/presentation/views/step3_view.dart';
@@ -14,9 +17,12 @@ static const String step3View = "Step4View";
 
    static const String studentDetailsView = "StudentDetailsView";
    static const String addressDetailsScreen = "AddressDetailsScreen";
+   static const String requestSent = "RequestSent";
+   static const String requestIspending = "RequestIsPending";
+   static const String home = "Home";
 
- 
-     
+  
+      
  
   static Route? router(RouteSettings settings) {
     switch (settings.name) {
@@ -32,6 +38,12 @@ static const String step3View = "Step4View";
         return MaterialPageRoute(builder: (context) =>   StudentDetailsView());
                    case addressDetailsScreen:
         return MaterialPageRoute(builder: (context) =>   AddressDetailsScreen());
+              case requestSent:
+        return MaterialPageRoute(builder: (context) =>   RequestSent());
+            case requestIspending:
+        return MaterialPageRoute(builder: (context) =>   RequestIsPending());
+                    case home:
+        return MaterialPageRoute(builder: (context) =>   Home());
   }
 }
 }

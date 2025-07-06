@@ -9,9 +9,9 @@ class StudentDetailsViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
+    return  
+      
+         Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
           child: SingleChildScrollView(
             child: Container(
@@ -151,9 +151,8 @@ class StudentDetailsViewBody extends StatelessWidget {
               ),
             ),
           ),
-        ),
-      ),
-    );
+        );
+      
   }
 
   Widget _buildLabel(String text) {

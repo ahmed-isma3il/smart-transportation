@@ -8,6 +8,7 @@ class StudentDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return   Scaffold(
+           backgroundColor: Colors.white,
       appBar: AppBar(backgroundColor: Colors.transparent,iconTheme: IconThemeData(color: Colors.black,),title:      Text(
                         "Student’s Details",
                         style: TextStyle(
