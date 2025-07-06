@@ -13,5 +13,17 @@ class AssetsManager {
    static const  String mapicon ="$baseUrl/location.png";
    static const  String menu ="$baseUrl/menu.png";
    static const  String notification ="$baseUrl/notification.png";
+   static const  String bus_icon ="$baseUrl/bus_icon.png";
+   static const  String call ="$baseUrl/call.png";
+   static const  String kid1 ="$baseUrl/kid1.png";
+   static const  String kid2 ="$baseUrl/kid2.png";
 
-}   
+   static const  String school_icon ="$baseUrl/school_icon.png";
+      static const  String home_icon ="$baseUrl/home_icon.png";
+
+      static const  String school_bus ="$baseUrl/School Bus.png";
+      static const  String arrived ="$baseUrl/arrived.png";
+      static const  String emergency ="$baseUrl/emergency.png";
+   
+ 
+}  
