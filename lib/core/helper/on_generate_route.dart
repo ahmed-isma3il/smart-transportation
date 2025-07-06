@@ -1,0 +1,37 @@
+import 'package:flutter/material.dart';
+import 'package:member/features/address_details_screen/presentation/views/address_details_screen.dart';
+import 'package:member/features/service/presentation/views/servies_view.dart';
+import 'package:member/features/step2/presentation/views/step2_view.dart';
+import 'package:member/features/step3/presentation/views/step3_view.dart';
+import 'package:member/features/student_details/presentation/views/student_details_view.dart';
+import 'package:member/features/welcome/presentation/views/welcome_view.dart';
+
+class OnGenerateRoute {
+   static const String welcome = "welcome";
+   static const String servicesView = "ServicesView";
+   static const String step2View = "Step2View";
+static const String step3View = "Step4View";
+
+   static const String studentDetailsView = "StudentDetailsView";
+   static const String addressDetailsScreen = "AddressDetailsScreen";
+
+ 
+     
+ 
+  static Route? router(RouteSettings settings) {
+    switch (settings.name) {
+      case welcome:
+        return MaterialPageRoute(builder: (context) =>   WelcomeView());
+           case servicesView:
+        return MaterialPageRoute(builder: (context) =>   ServicesView());
+                   case step2View:
+        return MaterialPageRoute(builder: (context) =>   Step2View());
+                           case step3View:
+        return MaterialPageRoute(builder: (context) =>   Step3View());
+               case studentDetailsView:
+        return MaterialPageRoute(builder: (context) =>   StudentDetailsView());
+                   case addressDetailsScreen:
+        return MaterialPageRoute(builder: (context) =>   AddressDetailsScreen());
+  }
+}
+}
