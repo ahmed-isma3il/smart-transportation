@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:member/config/app_text_styles.dart';
 import 'package:member/core/helper/colors_manager.dart';
+import 'package:member/features/home/presentation/views/tabs/students/widgets/show_driver_info_dialog.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 
@@ -116,19 +117,20 @@ class _CalendarPageState extends State<CalendarPage> {
                   return const SizedBox.shrink();
                 },
               ),
-              onDaySelected: (selectedDay, focusedDay) {
-                setState(() {
-               _selectedDay = normalizeDate(selectedDay);
+          onDaySelected: (selectedDay, focusedDay) {
+  final normalizedDay = normalizeDate(selectedDay);
+  setState(() {
+    _selectedDay = normalizedDay;
+    _focusedDay = focusedDay;
 
-                  _focusedDay = focusedDay;
+    if (normalizedDay.year == 2025 &&
+        normalizedDay.month == 9 &&
+        normalizedDay.day == 1) {
+      showDriverInfoDialog(context);
+    }
+  });
+},
 
-                  if (selectedDay.year == 2025 &&
-                      selectedDay.month == 9 &&
-                      selectedDay.day == 3) {
-                    _showAttendanceDialog(context, selectedDay);
-                  }
-                });
-              },
             ),
             const SizedBox(height: 20),
             Padding(

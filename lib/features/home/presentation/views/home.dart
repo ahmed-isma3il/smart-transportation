@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:member/config/app_text_styles.dart';
 import 'package:member/core/helper/assets_manager.dart';
 import 'package:member/core/helper/colors_manager.dart';
+import 'package:member/features/home/presentation/views/tabs/menu/menu.dart';
 import 'package:member/features/home/presentation/views/tabs/notifications/notifications.dart';
 import 'package:member/features/home/presentation/views/tabs/students/views/students.dart';
 import 'package:member/features/home/presentation/views/widgets/home_view_body.dart';
@@ -22,7 +23,7 @@ class _HomeState extends State<Home> {
     HomeViewBody(),
    StudentsProfilePage(),
      NotificationsPage(),
-    Center(child: Text('Menu')),
+    MenuPage(),
   ];
 
   @override

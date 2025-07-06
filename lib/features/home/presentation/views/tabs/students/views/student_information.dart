@@ -191,7 +191,9 @@ class StudentInformationPage extends StatelessWidget {
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, OnGenerateRoute.sharedAccessPage);
+                          },
                           style: ElevatedButton.styleFrom(
                             backgroundColor:   ColorsManager.primary,
                             foregroundColor: Colors.black,

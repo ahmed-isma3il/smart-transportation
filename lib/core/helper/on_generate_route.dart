@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:member/features/address_details_screen/presentation/views/address_details_screen.dart';
 import 'package:member/features/home/presentation/views/home.dart';
 import 'package:member/features/home/presentation/views/tabs/students/views/calendar_page.dart';
+import 'package:member/features/home/presentation/views/tabs/students/views/shared_access.dart';
 import 'package:member/features/home/presentation/views/tabs/students/views/student_information.dart';
 import 'package:member/features/home/presentation/views/tabs/students/views/upload_photos_page.dart';
 import 'package:member/features/pending_confirmation/presentation/views/request_is_pending.dart';
@@ -28,7 +29,9 @@ static const String step3View = "Step4View";
    static const String uploadPhotosPage = "UploadPhotosPage";
   
    static const String calendarPage = "CalendarPage";
-      
+   static const String sharedAccessPage = "SharedAccessPage";
+
+       
     
   static Route? router(RouteSettings settings) {
     switch (settings.name) {
@@ -56,6 +59,8 @@ static const String step3View = "Step4View";
         return MaterialPageRoute(builder: (context) =>   UploadPhotosPage());
                   case calendarPage:
         return MaterialPageRoute(builder: (context) =>   CalendarPage());
+                          case sharedAccessPage:
+        return MaterialPageRoute(builder: (context) =>   SharedAccessPage());
   }
 }
 }
