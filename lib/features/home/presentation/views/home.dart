@@ -4,6 +4,7 @@ import 'package:member/config/app_text_styles.dart';
 import 'package:member/core/helper/assets_manager.dart';
 import 'package:member/core/helper/colors_manager.dart';
 import 'package:member/features/home/presentation/views/tabs/notifications/notifications.dart';
+import 'package:member/features/home/presentation/views/tabs/students/views/students.dart';
 import 'package:member/features/home/presentation/views/widgets/home_view_body.dart';
 import 'package:badges/badges.dart' as badges;
 
@@ -19,7 +20,7 @@ class _HomeState extends State<Home> {
 
   final List<Widget> _screens = [
     HomeViewBody(),
-    Center(child: Text('Students')),
+   StudentsProfilePage(),
      NotificationsPage(),
     Center(child: Text('Menu')),
   ];

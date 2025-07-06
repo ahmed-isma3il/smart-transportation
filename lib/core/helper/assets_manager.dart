@@ -17,7 +17,14 @@ class AssetsManager {
    static const  String call ="$baseUrl/call.png";
    static const  String kid1 ="$baseUrl/kid1.png";
    static const  String kid2 ="$baseUrl/kid2.png";
+   static const  String kid ="$baseUrl/kid.png";
+   static const  String edit ="$baseUrl/edit.png";
+   static const  String photo ="$baseUrl/photo.png";
+   static const  String imagesbank ="$baseUrl/imagesbank.png";
 
+ 
+ 
+ 
    static const  String school_icon ="$baseUrl/school_icon.png";
       static const  String home_icon ="$baseUrl/home_icon.png";
 

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:member/features/address_details_screen/presentation/views/address_details_screen.dart';
 import 'package:member/features/home/presentation/views/home.dart';
+import 'package:member/features/home/presentation/views/tabs/students/views/calendar_page.dart';
+import 'package:member/features/home/presentation/views/tabs/students/views/student_information.dart';
+import 'package:member/features/home/presentation/views/tabs/students/views/upload_photos_page.dart';
 import 'package:member/features/pending_confirmation/presentation/views/request_is_pending.dart';
 import 'package:member/features/pending_confirmation/presentation/views/request_sent.dart';
 import 'package:member/features/service/presentation/views/servies_view.dart';
@@ -20,10 +23,13 @@ static const String step3View = "Step4View";
    static const String requestSent = "RequestSent";
    static const String requestIspending = "RequestIsPending";
    static const String home = "Home";
+   static const String studentInformationPage = "StudentInformationPage";
 
+   static const String uploadPhotosPage = "UploadPhotosPage";
   
+   static const String calendarPage = "CalendarPage";
       
- 
+    
   static Route? router(RouteSettings settings) {
     switch (settings.name) {
       case welcome:
@@ -44,6 +50,12 @@ static const String step3View = "Step4View";
         return MaterialPageRoute(builder: (context) =>   RequestIsPending());
                     case home:
         return MaterialPageRoute(builder: (context) =>   Home());
+                 case studentInformationPage:
+        return MaterialPageRoute(builder: (context) =>   StudentInformationPage());
+                         case uploadPhotosPage:
+        return MaterialPageRoute(builder: (context) =>   UploadPhotosPage());
+                  case calendarPage:
+        return MaterialPageRoute(builder: (context) =>   CalendarPage());
   }
 }
 }

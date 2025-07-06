@@ -104,7 +104,7 @@ class NotificationItem extends StatelessWidget {
         // النقطة على اليسار
         const Positioned(
           left: 0,
-          top: 30,
+          top: 50,
           child: Padding(
             padding: EdgeInsets.only(right: 16.0),
             child: Icon(Icons.circle, size: 10, color: Color(0XFF1B4865)),

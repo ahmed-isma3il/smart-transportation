@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:member/config/app_text_styles.dart';
 import 'package:member/core/helper/assets_manager.dart';
+import 'package:member/features/home/presentation/views/tabs/notifications/widgets/Emergency_item.dart';
 import 'package:member/features/home/presentation/views/tabs/notifications/widgets/circle_tab.dart';
 import 'package:member/features/home/presentation/views/tabs/notifications/widgets/notification_item.dart';
 import 'package:member/features/home/presentation/views/tabs/notifications/widgets/section_header.dart';
-
+ 
 class NotificationsPage extends StatefulWidget {
   const NotificationsPage({super.key});
 
@@ -15,6 +16,69 @@ class NotificationsPage extends StatefulWidget {
 
 class _NotificationsPageState extends State<NotificationsPage> {
   int selectedTabIndex = 0; // 0 = Bus, 1 = Emergency
+
+  List<Map<String, dynamic>> todayBusNotifications = [
+    {
+      "name": "Reem's bus arrived!",
+      "subtitle": "Please meet the bus outside",
+      "time": null,
+      "image": AssetsManager.kid2,
+      "showSwipe": false,
+    },
+    {
+      "name": "Reem's bus is about to arrive",
+      "subtitle": "2 mins left",
+      "time": "2 mins left",
+      "image": AssetsManager.kid2,
+      "showSwipe": false,
+    },
+    {
+      "name": "Omar’s bus arrived!",
+      "subtitle": "Please meet the bus outside",
+      "time": null,
+      "image": AssetsManager.kid1,
+      "showSwipe": false,
+    },
+    {
+      "name": "Omar’s bus is about to arrive",
+      "subtitle": "1 min left",
+      "time": "1 min left",
+      "image": AssetsManager.kid1,
+      "showSwipe": true,
+    },
+  ];
+
+  List<Map<String, dynamic>> yesterdayBusNotifications = [
+    {
+      "name": "Omar’s bus arrived!",
+      "subtitle": "Please meet the bus outside",
+      "time": null,
+      "image": AssetsManager.kid1,
+      "showSwipe": false,
+    },
+  ];
+
+  List<Map<String, String>> todayEmergencyNotifications = [
+    {
+      "name": "Omar’s Bus was in an accident!",
+      "subtitle": "We will notify you with more details"
+    },
+    {
+      "name": "Omar’s Bus was in an accident!",
+      "subtitle": "We will notify you with more details"
+    },
+    {
+      "name": "Omar’s Bus was in an accident!",
+      "subtitle": "We will notify you with more details"
+    },
+  ];
+
+  List<Map<String, String>> yesterdayEmergencyNotifications = [
+    {
+      "name": "Omar’s Bus was in an accident!",
+      "subtitle": "We will notify you with more details"
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +93,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
               Text("Notifications",
                   style: AppTextStyles.heading.copyWith(
                       color: const Color(0XFF000000), fontSize: 20)),
-
               const SizedBox(height: 16),
-
-              // Tabs
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -47,9 +108,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                   ),
                 ],
               ),
-
               const SizedBox(height: 24),
-
               Expanded(
                 child: ListView(
                   children: selectedTabIndex == 0
@@ -64,82 +123,84 @@ class _NotificationsPageState extends State<NotificationsPage> {
     );
   }
 
-  List<Widget> _buildBusNotifications() {
-    return [
-      const SectionHeader(title: "Today"),
-      NotificationItem(
-        name: "Reem's bus arrived!",
-        subtitle: "Please meet the bus outside",
-        time: null,
-        image: AssetsManager.kid2,
-        showSwipe: false,
-      ),
-      NotificationItem(
-        name: "Reem's bus is about to arrive",
-        subtitle: "2 mins left",
-        time: "2 mins left",
-        image: AssetsManager.kid2,
-        showSwipe: false,
-      ),
-      NotificationItem(
-        name: "Omar’s bus arrived!",
-        subtitle: "Please meet the bus outside",
-        time: null,
-        image: AssetsManager.kid1,
-        showSwipe: false,
-      ),
-      NotificationItem(
-        name: "Omar’s bus is about to arrive",
-        subtitle: "1 min left",
-        time: "1 min left",
-        image: AssetsManager.kid1,
-        showSwipe: true,
-      ),
-      const SizedBox(height: 16),
-      const SectionHeader(title: "Yesterday , September 1"),
-      NotificationItem(
-        name: "Omar’s bus arrived!",
-        subtitle: "Please meet the bus outside",
-        time: null,
-        image: AssetsManager.kid1,
-        showSwipe: false,
-      ),
-    ];
-  }
+List<Widget> _buildBusNotifications() {
+  return [
+    const SectionHeader(title: "Today"),
+    ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: todayBusNotifications.length,
+      itemBuilder: (context, index) {
+        final item = todayBusNotifications[index];
+        return NotificationItem(
+          key: ValueKey(item['name'] + item['subtitle']),
+          name: item["name"],
+          subtitle: item["subtitle"],
+          time: item["time"],
+          image: item["image"],
+          showSwipe: item["showSwipe"],
+           
+          
+        );
+      },
+    ),
+    const SizedBox(height: 16),
+    const SectionHeader(title: "Yesterday , September 1"),
+    ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: yesterdayBusNotifications.length,
+itemBuilder: (context, index) {
+  final item = todayBusNotifications[index];
+  final key = ValueKey(item['name'] + item['subtitle']);
+
+  return NotificationItem(
+    key: key,
+    name: item["name"],
+    subtitle: item["subtitle"],
+    time: item["time"],
+    image: item["image"],
+    showSwipe: item["showSwipe"],
+   
+  );
+}
+
+    ),
+  ];
+}
+
+
 
   List<Widget> _buildEmergencyNotifications() {
     return [
       const SectionHeader(title: "Today"),
-      NotificationItem(
-        name: "Omar’s Bus was in an accident!",
-        subtitle: "We will notify you with more details",
-        time: null,
-        image: AssetsManager.kid1,
-        showSwipe: false,
-      ),
-      NotificationItem(
-        name: "Omar’s Bus was in an accident!",
-        subtitle: "We will notify you with more details",
-        time: null,
-        image: AssetsManager.kid1,
-        showSwipe: false,
-      ),
-      NotificationItem(
-        name: "Omar’s Bus was in an accident!",
-        subtitle: "We will notify you with more details",
-        time: null,
-        image: AssetsManager.kid1,
-        showSwipe: true,
+      ...todayEmergencyNotifications.asMap().entries.map(
+        (entry) => EmergencyItem(
+          name: entry.value["name"]!,
+          subtitle: entry.value["subtitle"]!,
+          time: null,
+          showSwipe: true,
+          onDismissed: () {
+            setState(() {
+              todayEmergencyNotifications.removeAt(entry.key);
+            });
+          },
+        ),
       ),
       const SectionHeader(title: "Yesterday , September 1"),
-      NotificationItem(
-        name: "Omar’s Bus was in an accident!",
-        subtitle: "We will notify you with more details",
-        time: null,
-        image: AssetsManager.kid1,
-        showSwipe: false,
+      ...yesterdayEmergencyNotifications.asMap().entries.map(
+        (entry) => EmergencyItem(
+          name: entry.value["name"]!,
+          subtitle: entry.value["subtitle"]!,
+          time: null,
+          showSwipe: true,
+          onDismissed: () {
+            setState(() {
+              yesterdayEmergencyNotifications.removeAt(entry.key);
+            });
+          },
+        ),
       ),
     ];
   }
 }
- 
