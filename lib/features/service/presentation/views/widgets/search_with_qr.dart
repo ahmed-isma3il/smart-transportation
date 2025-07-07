@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:member/core/helper/assets_manager.dart';
 import 'package:member/core/helper/colors_manager.dart';
+import 'package:member/core/helper/on_generate_route.dart';
 
 class SearchWithQR extends StatelessWidget {
   const SearchWithQR({super.key});
@@ -47,7 +48,9 @@ class SearchWithQR extends StatelessWidget {
         SizedBox(width: 12.w),
 
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, OnGenerateRoute.qrScannerScreen);
+          },
           child: Image.asset(AssetsManager.qrcode, height: 30.h, width: 30.w),
         ),
       ],

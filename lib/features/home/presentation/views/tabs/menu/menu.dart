@@ -27,13 +27,12 @@ class MenuPage extends StatelessWidget {
                     "Menu",
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  Row(
+                  Column(
                     children: [
                       Image.asset(
                         AssetsManager.orginzer,
                         height: 16,
                         width: 16,
-                        color: Colors.grey,
                       ),
                       const SizedBox(width: 4),
                       const Text(
@@ -48,12 +47,22 @@ class MenuPage extends StatelessWidget {
               const SizedBox(height: 24),
 
               // --- Profile Picture ---
-              CircleAvatar(
-                radius: 40,
-                backgroundImage: AssetImage(AssetsManager.profile),
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  Container(
+                    height: 1,
+                    color: Colors.lightBlueAccent.withOpacity(0.3),
+                  ),
+                  Center(
+                    child: CircleAvatar(
+                      radius: 40,
+                      backgroundImage: AssetImage(AssetsManager.profile),
+                    ),
+                  ),
+                ],
               ),
-
-              const SizedBox(height: 8),
+              SizedBox(height: 8),
 
               // --- Name + QR ---
               Row(
@@ -86,12 +95,6 @@ class MenuPage extends StatelessWidget {
               ),
 
               const SizedBox(height: 16),
-              Container(
-                height: 1,
-                color: Colors.lightBlueAccent.withOpacity(0.3),
-              ),
-
-              const SizedBox(height: 16),
 
               // --- Menu Items with images ---
               buildMenuItem(
@@ -101,16 +104,25 @@ class MenuPage extends StatelessWidget {
                   Navigator.pushNamed(context, OnGenerateRoute.accountInfoPage);
                 },
               ),
-              buildMenuItem(AssetsManager.addresses, "Addresses",() {
-                Navigator.pushNamed(context, OnGenerateRoute.serviceaddressespage);
-
-              },),
+              buildMenuItem(AssetsManager.addresses, "Addresses", () {
+                Navigator.pushNamed(
+                  context,
+                  OnGenerateRoute.serviceaddressespage,
+                );
+              }),
               buildMenuItem(AssetsManager.report, "Reports", () {
                 Navigator.pushNamed(context, OnGenerateRoute.reportsPage);
               }),
-              buildMenuItem(AssetsManager.serivce_provider, "Service Provider",() {
-                Navigator.pushNamed(context, OnGenerateRoute.servicesOrganizerPage);
-              },),
+              buildMenuItem(
+                AssetsManager.serivce_provider,
+                "Service Provider",
+                () {
+                  Navigator.pushNamed(
+                    context,
+                    OnGenerateRoute.servicesOrganizerPage,
+                  );
+                },
+              ),
               buildMenuItem(AssetsManager.language, "Language", () {
                 showDialog(
                   context: context,
@@ -118,7 +130,7 @@ class MenuPage extends StatelessWidget {
                 );
               }),
 
-              // buildMenuItem(AssetsManager.about_us, "About Us"),
+              buildMenuItem(AssetsManager.about_us, "About Us",(){}),
               const Spacer(),
 
               // --- Log out ---

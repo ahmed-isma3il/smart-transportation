@@ -15,14 +15,13 @@ class CalendarPage extends StatefulWidget {
 
 class _CalendarPageState extends State<CalendarPage> {
   DateTime _focusedDay = DateTime.now();
-
   DateTime? _selectedDay;
 
   final Map<DateTime, String> statusMap = {
-    DateTime.now().subtract(Duration(days: 1)): 'attended', // أمس
-    DateTime.now(): 'today', // اليوم
-    DateTime.now().add(Duration(days: 4)): 'absent', // بعد 4 أيام
-    DateTime.now().add(Duration(days: 7)): 'parent', // بعد أسبوع
+    DateTime.now().subtract(Duration(days: 1)): 'attended',
+    DateTime.now(): 'today',
+    DateTime.now().add(Duration(days: 4)): 'absent',
+    DateTime.now().add(Duration(days: 7)): 'parent',
   };
 
   Color? _getMarkerColor(DateTime day) {
@@ -83,14 +82,18 @@ class _CalendarPageState extends State<CalendarPage> {
                 ],
               ),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 30),
+
+            // التاريخ فقط بدون زر "2 weeks"
+            Text(
+              DateFormat.yMMMM().format(_focusedDay),
+              style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 30),
+
             TableCalendar(
-              firstDay: DateTime.now().subtract(
-                const Duration(days: 30),
-              ), // شهر واحد للخلف
-              lastDay: DateTime.now().add(
-                const Duration(days: 30),
-              ), // شهر واحد للأمام
+              firstDay: DateTime.now().subtract(const Duration(days: 30)),
+              lastDay: DateTime.now().add(const Duration(days: 30)),
               focusedDay: _focusedDay,
               selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
               onDaySelected: (selectedDay, focusedDay) {
@@ -105,30 +108,28 @@ class _CalendarPageState extends State<CalendarPage> {
                   _selectedDay = selectedDay;
                   _focusedDay = focusedDay;
 
-                  // عرض معلومات السائق إذا كان اليوم المحدد هو أمس
                   if (isSameDay(selectedDay, normalizedYesterday)) {
                     showDriverInfoDialog(context);
                   }
                 });
               },
+              calendarFormat: CalendarFormat.month, // ثبات العرض على شكل شهر
+              headerVisible: false, // إخفاء الهيدر تمامًا (اللي فيه زر 2 weeks)
+              availableCalendarFormats: const {CalendarFormat.month: 'Month'},
               calendarStyle: CalendarStyle(
                 todayDecoration: BoxDecoration(
                   color: Colors.purple,
-                  shape: BoxShape.circle, // استخدم إما shape أو borderRadius
+                  shape: BoxShape.circle,
                 ),
                 selectedDecoration: BoxDecoration(
                   color: Color(0XFF735BF2),
-                  shape: BoxShape.circle, // استخدم إما shape أو borderRadius
+                  shape: BoxShape.circle,
                 ),
-                defaultDecoration: BoxDecoration(
-                  shape: BoxShape.circle, // استخدم إما shape أو borderRadius
-                ),
+                defaultDecoration: BoxDecoration(shape: BoxShape.circle),
               ),
-
               calendarBuilders: CalendarBuilders(
                 markerBuilder: (context, day, events) {
                   final color = _getMarkerColor(normalizeDate(day));
-
                   if (color != null) {
                     return Positioned(
                       bottom: 4,
@@ -200,229 +201,4 @@ class _LegendItem extends StatelessWidget {
       ],
     );
   }
-}
-
-void _showAttendanceDialog(BuildContext context, DateTime selectedDay) {
-  bool fromHome = false;
-  bool fromSchool = false;
-
-  showDialog(
-    context: context,
-    builder: (context) {
-      return StatefulBuilder(
-        builder: (context, setState) {
-          return Dialog(
-            backgroundColor: Colors.white,
-            insetPadding: EdgeInsets.symmetric(
-              horizontal: 20.w,
-              vertical: 20.h,
-            ),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16.r),
-            ),
-            child: SingleChildScrollView(
-              padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom,
-              ),
-              child: Padding(
-                padding: EdgeInsets.all(20.r),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Center(
-                      child: Text(
-                        "${DateFormat('MMMM').format(selectedDay)} ${selectedDay.day}",
-                        style: AppTextStyles.semiBold.copyWith(
-                          color: ColorsManager.primary,
-                          fontSize: 20.sp,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 20.h),
-                    Text(
-                      "Default:",
-                      style: AppTextStyles.semiBold.copyWith(fontSize: 14.sp),
-                    ),
-                    SizedBox(height: 4.h),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 40.0),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.radio_button_checked,
-                            color: Colors.green,
-                            size: 16.sp,
-                          ),
-                          SizedBox(width: 6.w),
-                          Text(
-                            "Will Attend",
-                            style: AppTextStyles.semiBold.copyWith(
-                              fontSize: 14.sp,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 16.h),
-                    Text(
-                      "Change To:",
-                      style: AppTextStyles.semiBold.copyWith(fontSize: 14.sp),
-                    ),
-                    SizedBox(height: 8.h),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 40.0),
-                      child: Row(
-                        children: [
-                          Icon(Icons.circle, color: Colors.red, size: 12.sp),
-                          SizedBox(width: 6.w),
-                          Text(
-                            "Absent",
-                            style: AppTextStyles.semiBold.copyWith(
-                              fontSize: 14.sp,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 6.h),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 40.0),
-                      child: Text(
-                        "Reason:",
-                        style: AppTextStyles.semiBold.copyWith(fontSize: 14.sp),
-                      ),
-                    ),
-                    SizedBox(height: 4.h),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 40.0),
-                      child: TextField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.r),
-                          ),
-                          isDense: true,
-                          contentPadding: EdgeInsets.all(12.r),
-                        ),
-                        maxLines: 2,
-                        style: TextStyle(fontSize: 14.sp),
-                      ),
-                    ),
-                    SizedBox(height: 16.h),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 40.0),
-                      child: Row(
-                        children: [
-                          Icon(Icons.circle, color: Colors.blue, size: 12.sp),
-                          SizedBox(width: 6.w),
-                          Text(
-                            "Parent Pick up",
-                            style: AppTextStyles.semiBold.copyWith(
-                              fontSize: 14.sp,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 8.h),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 40.0),
-                      child: Row(
-                        children: [
-                          Checkbox(
-                            value: fromHome,
-                            onChanged: (value) {
-                              setState(() {
-                                fromHome = value!;
-                                if (fromHome) fromSchool = false;
-                              });
-                            },
-                            materialTapTargetSize:
-                                MaterialTapTargetSize.shrinkWrap,
-                          ),
-                          Text(
-                            "From Home",
-                            style: AppTextStyles.semiBold.copyWith(
-                              fontSize: 14.sp,
-                            ),
-                          ),
-                          SizedBox(width: 12.w),
-                          Checkbox(
-                            value: fromSchool,
-                            onChanged: (value) {
-                              setState(() {
-                                fromSchool = value!;
-                                if (fromSchool) fromHome = false;
-                              });
-                            },
-                            materialTapTargetSize:
-                                MaterialTapTargetSize.shrinkWrap,
-                          ),
-                          Text(
-                            "From School",
-                            style: AppTextStyles.semiBold.copyWith(
-                              fontSize: 14.sp,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 16.h),
-                    Text(
-                      "Leave a note:",
-                      style: AppTextStyles.semiBold.copyWith(fontSize: 14.sp),
-                    ),
-                    SizedBox(height: 4.h),
-                    TextField(
-                      decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.r),
-                          borderSide: BorderSide(color: ColorsManager.primary),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.r),
-                          borderSide: BorderSide(
-                            color: ColorsManager.primary,
-                            width: 2,
-                          ),
-                        ),
-                        isDense: true,
-                        contentPadding: EdgeInsets.all(12.r),
-                      ),
-                      maxLines: 2,
-                      style: TextStyle(fontSize: 14.sp),
-                    ),
-                    SizedBox(height: 20.h),
-                    SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () => Navigator.of(context).pop(),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0XFFCAE9FE),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.r),
-                          ),
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 30.w,
-                            vertical: 12.h,
-                          ),
-                        ),
-                        child: Text(
-                          "Save",
-                          style: AppTextStyles.heading.copyWith(
-                            fontSize: 14.sp,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
-        },
-      );
-    },
-  );
 }

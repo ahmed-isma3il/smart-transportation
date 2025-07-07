@@ -4,6 +4,7 @@ import 'package:member/core/helper/colors_manager.dart';
 import 'package:member/config/app_text_styles.dart';
 import 'package:member/core/helper/assets_manager.dart';
 import 'package:member/core/helper/on_generate_route.dart';
+import 'package:member/features/service/presentation/views/servies_view.dart';
 import '../widgets/services_organizer_card.dart'; // تأكد من أن الكلاس موجود في هذا المسار
 
 class SerivesProviderPage extends StatelessWidget {
@@ -54,7 +55,7 @@ class SerivesProviderPage extends StatelessWidget {
               height: 48.h,
               child: ElevatedButton(
                 onPressed: () {
-   Navigator.pushNamed(context, OnGenerateRoute.servicesView);
+   Navigator.pushReplacement(context ,MaterialPageRoute(builder: (context) => ServicesView(isInSettings: true,),));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: ColorsManager.primary,

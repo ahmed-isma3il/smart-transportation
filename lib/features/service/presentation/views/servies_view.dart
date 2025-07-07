@@ -3,14 +3,14 @@ import 'package:member/features/service/presentation/views/widgets/services_view
 import 'package:member/features/welcome/presentation/views/widget/welcome_view_body.dart';
 
 class ServicesView extends StatelessWidget {
-  ServicesView({super.key});
-
+  ServicesView({super.key,  this.isInSettings});
+bool ? isInSettings ;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
            backgroundColor: Colors.white,
        appBar: AppBar(iconTheme: IconThemeData(color: Colors.black),),
-      body: ServicesViewBody());
+      body: ServicesViewBody(isInSettings: isInSettings));
   }
   
 }

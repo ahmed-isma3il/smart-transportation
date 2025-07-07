@@ -68,16 +68,8 @@ class AddressDetailsScreen extends StatelessWidget {
                             ),
                             Material(
                               color: Colors.transparent,
-                              child: InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (_) => const LocationPickerScreen()),
-                                  );
-                                },
-                                child: Container(
-                                  color: Colors.transparent,
-                                ),
+                              child: Container(
+                                color: Colors.transparent,
                               ),
                             ),
 
@@ -85,23 +77,31 @@ class AddressDetailsScreen extends StatelessWidget {
 
 
                             Center(
-                              child: Column(
+                              child: GestureDetector(
+                                onTap: () {
+                                        Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (_) => const LocationPickerScreen()),
+                                  );
+                                },
+                                child: Column(
+                                  
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                   Image.asset(AssetsManager.set_location),
+                                   SizedBox(height: 5.h,),
+                                Text(
+                                  "Set on map",
+                                  style: AppTextStyles.body.copyWith(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                    decoration: TextDecoration.underline,
+                                  ),
+                                )
                                 
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                 Image.asset(AssetsManager.set_location),
-                                 SizedBox(height: 5.h,),
-                              Text(
-                                "Set on map",
-                                style: AppTextStyles.body.copyWith(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
-                                  decoration: TextDecoration.underline,
-                                ),
-                              )
-                              
-                              
-                              ],),
+                                
+                                ],),
+                              ),
                             ),
                                   ],
                                 ),

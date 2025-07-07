@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:member/config/app_text_styles.dart';
 import 'package:member/core/helper/colors_manager.dart';
 import 'package:member/core/helper/on_generate_route.dart';
-import 'package:member/core/utiles/steps_progress.dart';
+import 'package:member/features/welcome/presentation/views/widget/steps_progress.dart';
 
 class Step2ViewBody extends StatelessWidget {
   const Step2ViewBody({super.key});

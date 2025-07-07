@@ -7,8 +7,8 @@ import 'package:member/core/helper/on_generate_route.dart';
 import 'package:member/features/service/presentation/views/widgets/search_with_qr.dart';
 
 class ServicesViewBody extends StatefulWidget {
-  const ServicesViewBody({super.key});
-
+    ServicesViewBody({super.key,required this.isInSettings});
+bool ? isInSettings =false;
   @override
   State<ServicesViewBody> createState() => _ServicesViewBodyState();
 }
@@ -22,41 +22,40 @@ class _ServicesViewBodyState extends State<ServicesViewBody> {
       'name': 'Delta Modern Language School',
       'organizer': 'Organizer Name',
       'email': 'email@gmail.com',
-      'Details': 'Address: Mansoura, Gehan Street'
+      'Details': 'Address: Mansoura, Gehan Street',
     },
-   {
+    {
       'name': 'Delta Modern Language School',
       'organizer': 'Organizer Name',
       'email': 'email@gmail.com',
-      'Details': 'Mansoura, Gehan Street'
+      'Details': 'Mansoura, Gehan Street',
     },
-     {
+    {
       'name': 'Delta Modern Language School',
       'organizer': 'Organizer Name',
       'email': 'email@gmail.com',
-      'Details': 'Mansoura, Gehan Street'
+      'Details': 'Mansoura, Gehan Street',
     },
-      {
+    {
       'name': 'Delta Modern Language School',
       'organizer': 'Organizer Name',
       'email': 'email@gmail.com',
-      'Details': 'Mansoura, Gehan Street'
+      'Details': 'Mansoura, Gehan Street',
     },
-      {
+    {
       'name': 'Delta Modern Language School',
       'organizer': 'Organizer Name',
       'email': 'email@gmail.com',
-      'Details': 'Mansoura, Gehan Street'
+      'Details': 'Mansoura, Gehan Street',
     },
-      {
+    {
       'name': 'Delta Modern Language School',
       'organizer': 'Organizer Name',
       'email': 'email@gmail.com',
-      'Details': 'Mansoura, Gehan Street'
+      'Details': 'Mansoura, Gehan Street',
     },
   ];
 
- 
   @override
   void dispose() {
     _scrollController.dispose();
@@ -82,9 +81,7 @@ class _ServicesViewBodyState extends State<ServicesViewBody> {
             child: Text(
               "Please join a Service Provider",
               textAlign: TextAlign.center,
-              style: AppTextStyles.semiBold.copyWith(
-                color: ColorsManager.grey,
-              ),
+              style: AppTextStyles.semiBold.copyWith(color: ColorsManager.grey),
             ),
           ),
           SizedBox(height: 24.h),
@@ -103,25 +100,26 @@ class _ServicesViewBodyState extends State<ServicesViewBody> {
                   child: ListView.separated(
                     controller: _scrollController,
                     itemCount: serviceProviders.length,
-                    separatorBuilder: (context, index) =>
-                        SizedBox(height: 16.h),
-                    itemBuilder: (context, index) => GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          selectedIndex = index;
-                        });
-                      },
-                      child: OrganizerCardDetails(
-                        name: serviceProviders[index]['name']!,
-                        organizer: serviceProviders[index]['organizer']!,
-                        email: serviceProviders[index]['email']!,
-                        address: serviceProviders[index]['Details']!,
-                        isSelected: selectedIndex == index,
-                      ),
-                    ),
+                    separatorBuilder:
+                        (context, index) => SizedBox(height: 16.h),
+                    itemBuilder:
+                        (context, index) => GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedIndex = index;
+                            });
+                          },
+                          child: OrganizerCardDetails(
+                            name: serviceProviders[index]['name']!,
+                            organizer: serviceProviders[index]['organizer']!,
+                            email: serviceProviders[index]['email']!,
+                            address: serviceProviders[index]['Details']!,
+                            isSelected: selectedIndex == index,
+                          ),
+                        ),
                   ),
                 ),
-       
+
                 Positioned(
                   right: 0,
                   top: 0,
@@ -130,8 +128,10 @@ class _ServicesViewBodyState extends State<ServicesViewBody> {
                     builder: (context, constraints) {
                       final trackHeight = constraints.maxHeight;
                       final thumbHeight = _getThumbHeight(trackHeight);
-                      final thumbTop =
-                          _getScrollIndicatorPosition(trackHeight, thumbHeight);
+                      final thumbTop = _getScrollIndicatorPosition(
+                        trackHeight,
+                        thumbHeight,
+                      );
 
                       return Container(
                         width: 10.w,
@@ -165,18 +165,26 @@ class _ServicesViewBodyState extends State<ServicesViewBody> {
           SizedBox(height: 16.h),
           Center(
             child: GestureDetector(
-              onTap: selectedIndex != null ? () {
-
-Navigator.pushReplacementNamed(context, OnGenerateRoute.step2View);
-
-              } : null,
+              onTap:
+                  selectedIndex != null
+                      ? () {
+                     !widget.isInSettings! ?   Navigator.pushReplacementNamed(
+                          context,
+                          OnGenerateRoute.step2View,
+                        ) :  Navigator.pushReplacementNamed(
+                          context,
+                          OnGenerateRoute.home,
+                        ) ;
+                      }
+                      : null,
               child: Container(
                 height: 42.h,
                 width: 376.w,
                 decoration: BoxDecoration(
-                  color: selectedIndex != null
-                      ? const Color(0XFF509BC7)
-                      : const Color(0xFFD9D9D9),
+                  color:
+                      selectedIndex != null
+                          ? const Color(0XFF509BC7)
+                          : const Color(0xFFD9D9D9),
                   borderRadius: BorderRadius.circular(10.r),
                 ),
                 child: Center(
@@ -257,11 +265,7 @@ class OrganizerCardDetails extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(
-              AssetsManager.ellipse_icon,
-              height: 40.h,
-              width: 40.w,
-            ),
+            Image.asset(AssetsManager.ellipse_icon, height: 40.h, width: 40.w),
             SizedBox(height: 4.h),
             Text(
               name,
