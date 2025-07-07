@@ -9,6 +9,7 @@ import 'package:member/features/home/presentation/views/tabs/students/views/cale
 import 'package:member/features/home/presentation/views/tabs/students/views/shared_access.dart';
 import 'package:member/features/home/presentation/views/tabs/students/views/student_information.dart';
 import 'package:member/features/home/presentation/views/tabs/students/views/upload_photos_page.dart';
+import 'package:member/features/location_picker/presentation/views/location_picker.dart';
 import 'package:member/features/pending_confirmation/presentation/views/request_is_pending.dart';
 import 'package:member/features/pending_confirmation/presentation/views/request_sent.dart';
 import 'package:member/features/service/presentation/views/servies_view.dart';
@@ -39,8 +40,9 @@ static const String step3View = "Step4View";
 
    static const String newReportPage = "NewReportPage";
    static const String reportDetailsPage = "ReportDetailsPage";
+   static const String locationPickerScreen = "LocationPickerScreen";
 
-          
+           
      
   static Route? router(RouteSettings settings) {
     switch (settings.name) {
@@ -74,6 +76,9 @@ static const String step3View = "Step4View";
         return MaterialPageRoute(builder: (context) =>   AccountInfoPage());
               case reportsPage:
         return MaterialPageRoute(builder: (context) =>   ReportsPage());
+        
+                          case locationPickerScreen:
+        return MaterialPageRoute(builder: (context) =>   LocationPickerScreen());
                 case newReportPage:
         return MaterialPageRoute(builder: (context) =>   NewReportPage());
     case reportDetailsPage:
@@ -86,8 +91,8 @@ static const String step3View = "Step4View";
       recipient: args['recipient'],
       description: args['description'],
     ),
-  );
-
+  ); 
   }
+  
 }
 }

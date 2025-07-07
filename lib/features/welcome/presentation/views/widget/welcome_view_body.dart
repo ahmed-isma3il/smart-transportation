@@ -3,14 +3,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:member/config/app_text_styles.dart';
 import 'package:member/core/helper/colors_manager.dart';
 import 'package:member/core/helper/on_generate_route.dart';
+import 'package:member/core/utiles/steps_progress.dart';
+import 'package:member/features/welcome/presentation/views/widget/show_terms_dialog.dart';
 
-class WelcomeViewBody extends StatelessWidget {
+class WelcomeViewBody extends StatefulWidget {
   const WelcomeViewBody({super.key});
 
-  final int currentStep = 0;
-
   @override
+  State<WelcomeViewBody> createState() => _WelcomeViewBodyState();
+}
+
+class _WelcomeViewBodyState extends State<WelcomeViewBody> {
+  final int currentStep = 0;
   Widget build(BuildContext context) {
+    //Future.microtask(() => showTermsDialog(context));
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 24.w),
       child: Column(
@@ -21,31 +27,21 @@ class WelcomeViewBody extends StatelessWidget {
           SizedBox(height: 40.h),
           Center(
             child: Text(
-              "Please provide the following details to\n complete your member account",
+              "Please provide the following details to complete your member account",
               textAlign: TextAlign.center,
               style: AppTextStyles.semiBold,
-              maxLines: 2,
             ),
           ),
           SizedBox(height: 60.h),
 
-          _buildStep(
-            stepNumber: 1,
-            title: "Join Service Provider",
-            isActive: currentStep == 0,
-          ),
-          _buildLine(isActive: currentStep >= 1),
-          _buildStep(
-            stepNumber: 2,
-            title: "Add Student’s Details",
-            isActive: currentStep == 1,
-          ),
-          _buildLine(isActive: currentStep >= 2),
-          _buildStep(
-            stepNumber: 3,
-            title: "Add Address",
-            isActive: currentStep == 2,
-          ),
+    StepsProgress(
+  currentStep: 0,
+  steps: [
+    StepData(title: "Join Service Provider"),
+    StepData(title: "Add Student’s Details"),
+    StepData(title: "Add Address"),
+  ],
+),
 
           Spacer(flex: 2),
           Center(
@@ -73,7 +69,6 @@ class WelcomeViewBody extends StatelessWidget {
             ),
           ),
           SizedBox(height: 16.h),
-
           Center(
             child: Container(
               height: 42.h,
@@ -100,47 +95,65 @@ class WelcomeViewBody extends StatelessWidget {
     );
   }
 
-  Widget _buildStep({
+  Widget _buildStepWithLine({
     required int stepNumber,
     required String title,
     required bool isActive,
+    required bool showLineBelow,
   }) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          margin: EdgeInsets.only(right: 12.w, top: 4.h),
-          width: 20.w,
-          height: 20.h,
-          decoration: BoxDecoration(
-            color:
-                isActive
-                    ? ColorsManager.primary
-                    : ColorsManager.primary.withOpacity(0.2),
-            shape: BoxShape.circle,
-            border:
-                isActive
-                    ? Border.all(color: ColorsManager.primary, width: 2)
-                    : null,
-          ),
-          child:
-              isActive
-                  ? Center(
-                    child: Icon(
-                      Icons.circle,
-                      size: 8.w,
-                      color: ColorsManager.primary,
-                    ),
-                  )
-                  : null,
+        // دائرة + خط
+        Column(
+          children: [
+            // دائرة الخطوة
+            Container(
+              width: 24.w,
+              height: 24.h,
+              decoration: BoxDecoration(
+                color:
+                    isActive ? Colors.white : Color(0XFFBFDCED).withOpacity(.5),
+                shape: BoxShape.circle,
+                border: Border.all(color: ColorsManager.primary, width: 1.5),
+              ),
+              child:
+                  isActive
+                      ? Center(
+                        child: Container(
+                          width: 8.w,
+                          height: 8.h,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: ColorsManager.primary,
+                          ),
+                        ),
+                      )
+                      : null,
+            ),
+            // الخط
+            if (showLineBelow)
+              Container(
+                width: 1.w,
+                height: 72.h,
+                color:
+                    isActive
+                        ? ColorsManager.primary
+                        : ColorsManager.primary ,
+              ),
+          ],
         ),
-
+        SizedBox(width: 12.w),
+        // النص
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               "Step $stepNumber:",
-              style: AppTextStyles.semiBold.copyWith(fontSize: 14.sp),
+              style: AppTextStyles.semiBold.copyWith(
+                fontSize: 14.sp,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             Text(
               title,
@@ -152,18 +165,6 @@ class WelcomeViewBody extends StatelessWidget {
           ],
         ),
       ],
-    );
-  }
-
-  Widget _buildLine({required bool isActive}) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 10.h).copyWith(left: 9.w),
-      height: 30.h,
-      width: 2.w,
-      color:
-          isActive
-              ? ColorsManager.primary
-              : ColorsManager.primary.withOpacity(0.2),
     );
   }
 }

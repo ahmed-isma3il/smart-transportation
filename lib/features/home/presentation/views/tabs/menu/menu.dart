@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:member/core/helper/assets_manager.dart';
 import 'package:member/core/helper/on_generate_route.dart';
+import 'package:member/features/home/presentation/views/tabs/menu/widgets/language_dialog.dart';
+import 'package:member/features/home/presentation/views/tabs/menu/widgets/qr_code_dialog.dart';
 
 class MenuPage extends StatelessWidget {
   const MenuPage({super.key});
@@ -39,7 +41,7 @@ class MenuPage extends StatelessWidget {
                         style: TextStyle(fontSize: 12, color: Colors.grey),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
 
@@ -56,7 +58,7 @@ class MenuPage extends StatelessWidget {
               // --- Name + QR ---
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children:   [
+                children: [
                   Text(
                     "Maryam",
                     style: TextStyle(
@@ -66,27 +68,54 @@ class MenuPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: 6),
-               Image.asset(AssetsManager.qrcode,height: 30.h,width: 30.w,)
+                  GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => const QRCodeDialog(),
+                      );
+                    },
+
+                    child: Image.asset(
+                      AssetsManager.qrcode,
+                      height: 30.h,
+                      width: 30.w,
+                    ),
+                  ),
                 ],
               ),
 
               const SizedBox(height: 16),
-              Container(height: 1, color: Colors.lightBlueAccent.withOpacity(0.3)),
+              Container(
+                height: 1,
+                color: Colors.lightBlueAccent.withOpacity(0.3),
+              ),
 
               const SizedBox(height: 16),
 
               // --- Menu Items with images ---
-              buildMenuItem(AssetsManager.account_information, "Account Information",()  { Navigator.pushNamed(context, OnGenerateRoute.accountInfoPage);}),
+              buildMenuItem(
+                AssetsManager.account_information,
+                "Account Information",
+                () {
+                  Navigator.pushNamed(context, OnGenerateRoute.accountInfoPage);
+                },
+              ),
               // buildMenuItem(AssetsManager.addresses, "Addresses",() {
-                
-              // },),
-              buildMenuItem(AssetsManager.report, "Reports",() {
-                 Navigator.pushNamed(context, OnGenerateRoute.reportsPage);
-              },),
-              // buildMenuItem(AssetsManager.serivce_provider, "Service Provider"),
-              // buildMenuItem(AssetsManager.language, "Language"),
-              // buildMenuItem(AssetsManager.about_us, "About Us"),
 
+              // },),
+              buildMenuItem(AssetsManager.report, "Reports", () {
+                Navigator.pushNamed(context, OnGenerateRoute.reportsPage);
+              }),
+              // buildMenuItem(AssetsManager.serivce_provider, "Service Provider"),
+              buildMenuItem(AssetsManager.language, "Language", () {
+                showDialog(
+                  context: context,
+                  builder: (context) => const LanguageDialog(),
+                );
+              }),
+
+              // buildMenuItem(AssetsManager.about_us, "About Us"),
               const Spacer(),
 
               // --- Log out ---
@@ -109,27 +138,24 @@ class MenuPage extends StatelessWidget {
     );
   }
 
-static Widget buildMenuItem(String imagePath, String title, VoidCallback onTap) {
-  return Column(
-    children: [
-      ListTile(
-        contentPadding: EdgeInsets.zero,
-        leading: Image.asset(
-          imagePath,
-          height: 24,
-          width: 24,
-        ),
-        title: Text(
-          title,
-          style: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
+  static Widget buildMenuItem(
+    String imagePath,
+    String title,
+    VoidCallback onTap,
+  ) {
+    return Column(
+      children: [
+        ListTile(
+          contentPadding: EdgeInsets.zero,
+          leading: Image.asset(imagePath, height: 24, width: 24),
+          title: Text(
+            title,
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
           ),
+          onTap: onTap, // استخدم هنا مباشرة
         ),
-        onTap: onTap, // استخدم هنا مباشرة
-      ),
-      const Divider(height: 1),
-    ],
-  );
-}
+        const Divider(height: 1),
+      ],
+    );
+  }
 }

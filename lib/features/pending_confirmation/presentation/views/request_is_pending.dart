@@ -115,7 +115,7 @@ class RequestIsPending extends StatelessWidget {
                   "Your request is\n Pending!",
                   textAlign: TextAlign.center,
                   style: AppTextStyles.heading.copyWith(
-                    color: Color(0XFF1B4865CC).withOpacity(.8),
+                    color: Color(0XFF1B4865).withOpacity(.8),
                   ),
                 ),
               ),

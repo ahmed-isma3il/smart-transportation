@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:member/config/app_text_styles.dart';
 import 'package:member/core/helper/colors_manager.dart';
 import 'package:member/core/helper/on_generate_route.dart';
+import 'package:member/core/utiles/steps_progress.dart';
 
 class Step3ViewBody extends StatelessWidget {
   const Step3ViewBody({super.key});
@@ -29,24 +30,14 @@ class Step3ViewBody extends StatelessWidget {
             ),
           ),
           SizedBox(height: 60.h),
-
-          _buildStep(
-            stepNumber: 1,
-            title: "Join Service Provider",
-            isActive: currentStep == 0,
-          ),
-          _buildLine(isActive: currentStep >= 1),
-          _buildStep(
-            stepNumber: 2,
-            title: "Add Student’s Details",
-            isActive: currentStep == 1,
-          ),
-          _buildLine(isActive: currentStep >= 2),
-          _buildStep(
-            stepNumber: 3,
-            title: "Add Address",
-            isActive: currentStep == 2,
-          ),
+StepsProgress(
+  currentStep: 2,
+  steps: [
+    StepData(title: "Join Service Provider"),
+    StepData(title: "Add Student’s Details"),
+    StepData(title: "Add Address"),
+  ],
+),
 
           Spacer(flex: 2),
           Center(

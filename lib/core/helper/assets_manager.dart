@@ -45,6 +45,7 @@ class AssetsManager {
   static const String report = "$baseUrl/report.png";
   static const String upload = "$baseUrl/upload.png";
   static const String pen = "$baseUrl/pen.png";
+  static const String qr = "$baseUrl/qr.png";
 
 } 
  

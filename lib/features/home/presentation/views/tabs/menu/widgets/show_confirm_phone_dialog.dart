@@ -21,7 +21,7 @@ void showConfirmPhoneDialog(BuildContext context, String phone) {
                        const Spacer(),
                      GestureDetector(
                         onTap: () => Navigator.pop(context),
-                        child: const Icon(Icons.close, size: 18, color: Colors.grey),
+                        child: const Icon(Icons.close, size: 18,  color: ColorsManager.primary),
                       ),
                    ],
                  ),

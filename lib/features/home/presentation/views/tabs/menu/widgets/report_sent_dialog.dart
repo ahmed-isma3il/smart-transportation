@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:member/core/helper/colors_manager.dart';
 
 class ReportSentDialog extends StatelessWidget {
   final String reportId;
@@ -19,7 +20,7 @@ class ReportSentDialog extends StatelessWidget {
               alignment: Alignment.topRight,
               child: GestureDetector(
                 onTap: () => Navigator.of(context).pop(),
-                child: const Icon(Icons.close, size: 20, color: Colors.black54),
+                child: const Icon(Icons.close, size: 20,  color: ColorsManager.primary),
               ),
             ),
 

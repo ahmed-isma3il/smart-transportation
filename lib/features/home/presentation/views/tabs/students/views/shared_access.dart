@@ -26,7 +26,7 @@ class SharedAccessPage extends StatelessWidget {
           IconButton(
             onPressed: () {},
             icon: Icon(Icons.mic_none, color: Colors.black),
-          )
+          ),
         ],
       ),
       backgroundColor: Colors.white,
@@ -38,47 +38,51 @@ class SharedAccessPage extends StatelessWidget {
             Text(
               "You can allow members to check on \n the student with you.",
               textAlign: TextAlign.center,
-              style: AppTextStyles.semiBold.copyWith(fontSize: 16,color: ColorsManager.primary)
+              style: AppTextStyles.semiBold.copyWith(
+                fontSize: 16,
+                color: ColorsManager.primary,
+              ),
             ),
             SizedBox(height: 16.h),
             Text(
               "Current Members",
-               style: AppTextStyles.semiBold.copyWith(fontSize: 16, )
+              style: AppTextStyles.semiBold.copyWith(fontSize: 16),
             ),
             SizedBox(height: 12.h),
             Expanded(
               child: ListView.separated(
-                  shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
                 itemCount: members.length,
                 separatorBuilder: (_, __) => SizedBox(height: 12.h),
                 itemBuilder: (context, index) {
                   final member = members[index];
-            return Dismissible(
-  key: Key(member.name + index.toString()),
-  direction: DismissDirection.endToStart,
-  confirmDismiss: (direction) async {
-    // نعرض الـ Dialog و نرجع true أو false بناءً عليه
-    final result = await showDialog<bool>(
-      context: context,
-      builder: (context) {
-        return DeleteConfirmationDialog(memberName: member.name);
-      },
-    );
-    return result ?? false;
-  },
-  background: Container(
-    alignment: Alignment.centerRight,
-    padding: EdgeInsets.only(right: 20.w),
-    decoration: BoxDecoration(
-      color: Colors.red.shade300,
-      borderRadius: BorderRadius.circular(16.r),
-    ),
-    child: Icon(Icons.delete, color: Colors.white),
-  ),
-  child: MemberCard(member: member),
-);
-
+                  return Dismissible(
+                    key: Key(member.name + index.toString()),
+                    direction: DismissDirection.endToStart,
+                    confirmDismiss: (direction) async {
+                      // نعرض الـ Dialog و نرجع true أو false بناءً عليه
+                      final result = await showDialog<bool>(
+                        context: context,
+                        builder: (context) {
+                          return DeleteConfirmationDialog(
+                            memberName: member.name,
+                          );
+                        },
+                      );
+                      return result ?? false;
+                    },
+                    background: Container(
+                      alignment: Alignment.centerRight,
+                      padding: EdgeInsets.only(right: 20.w),
+                      decoration: BoxDecoration(
+                        color: Colors.red.shade300,
+                        borderRadius: BorderRadius.circular(16.r),
+                      ),
+                      child: Icon(Icons.delete, color: Colors.white),
+                    ),
+                    child: MemberCard(member: member),
+                  );
                 },
               ),
             ),
@@ -86,12 +90,12 @@ class SharedAccessPage extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-         onPressed: () {
-  showDialog(
-    context: context,
-    builder: (_) => AddMemberDialog(),
-  );
-},
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (_) => AddMemberDialog(),
+                  );
+                },
 
                 style: ElevatedButton.styleFrom(
                   backgroundColor: ColorsManager.primary,
@@ -109,7 +113,7 @@ class SharedAccessPage extends StatelessWidget {
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -124,7 +128,9 @@ class Member {
   final MemberStatus status;
 
   Member({required this.name, required this.status});
-}class MemberCard extends StatelessWidget {
+}
+
+class MemberCard extends StatelessWidget {
   final Member member;
 
   const MemberCard({super.key, required this.member});
@@ -154,7 +160,7 @@ class Member {
             color: Colors.grey.withOpacity(0.15),
             blurRadius: 6,
             offset: Offset(0, 3),
-          )
+          ),
         ],
       ),
       child: Column(
@@ -196,7 +202,7 @@ class Member {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                             Text(
+                    Text(
                       member.name,
                       style: TextStyle(
                         fontSize: 16.sp,
@@ -204,15 +210,10 @@ class Member {
                         color: Colors.blue.shade800,
                       ),
                     ),
- SizedBox(height: 4.h), 
+                    SizedBox(height: 4.h),
                     Row(
                       children: [
- 
-            
-                        CircleAvatar(
-                          radius: 5.r,
-                          backgroundColor: statusColor,
-                        ),
+                        CircleAvatar(radius: 5.r, backgroundColor: statusColor),
                         SizedBox(width: 6.w),
                         Text(
                           statusText,
@@ -224,7 +225,6 @@ class Member {
                         ),
                       ],
                     ),
-                    
                   ],
                 ),
               ],
@@ -235,6 +235,7 @@ class Member {
     );
   }
 }
+
 class DeleteConfirmationDialog extends StatelessWidget {
   final String memberName;
 
@@ -243,6 +244,8 @@ class DeleteConfirmationDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor: Colors.white,
+
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
       contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
       content: Column(
@@ -252,7 +255,11 @@ class DeleteConfirmationDialog extends StatelessWidget {
             alignment: Alignment.topRight,
             child: GestureDetector(
               onTap: () => Navigator.pop(context),
-              child: Icon(Icons.close, size: 20.sp),
+              child: Icon(
+                Icons.close,
+                size: 20.sp,
+                color: ColorsManager.primary,
+              ),
             ),
           ),
           SizedBox(height: 8.h),
@@ -280,12 +287,13 @@ class DeleteConfirmationDialog extends StatelessWidget {
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: Text("Cancel", style: TextStyle(color: Colors.grey)),
-          )
+          ),
         ],
       ),
     );
   }
 }
+
 class AddMemberDialog extends StatelessWidget {
   final TextEditingController controller = TextEditingController();
 
@@ -293,52 +301,111 @@ class AddMemberDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
-      contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Align(
-            alignment: Alignment.topRight,
-            child: GestureDetector(
-              onTap: () => Navigator.pop(context),
-              child: Icon(Icons.close, size: 20.sp),
-            ),
-          ),
-          SizedBox(height: 8.h),
-          Text(
-            "Please provide the details of the member you want to add",
-            textAlign: TextAlign.center,
-            style: AppTextStyles.semiBold.copyWith(fontSize: 16.sp),
-          ),
-          SizedBox(height: 20.h),
-          TextField(
-            controller: controller,
-            decoration: InputDecoration(
-              hintText: "Enter Phone Number/ E-mail",
-              suffixIcon: Icon(Icons.qr_code),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12.r),
+    return Dialog(
+      backgroundColor: Colors.white,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.r)),
+      child: SizedBox(
+        width: 360.w, // تحكم كامل في العرض
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Align(
+                alignment: Alignment.topRight,
+                child: GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: Icon(
+                    Icons.close,
+                    size: 20.sp,
+                    color: ColorsManager.primary,
+                  ),
+                ),
               ),
-            ),
-          ),
-          SizedBox(height: 20.h),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-              // استخدم controller.text هنا
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: ColorsManager.primary,
-              minimumSize: Size(double.infinity, 48.h),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12.r),
+              SizedBox(height: 8.h),
+
+              // Title Text
+              Text(
+                "Please provide the details of the member you want to add",
+                textAlign: TextAlign.center,
+                style: AppTextStyles.semiBold.copyWith(
+                  fontSize: 16.sp,
+                  color: ColorsManager.primary,
+                ),
               ),
-            ),
-            child: Text("Add Member", style: TextStyle(color: Colors.white)),
+              SizedBox(height: 20.h),
+
+              // TextField + QR icon on the side
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: controller,
+                      decoration: InputDecoration(
+                        hintStyle: TextStyle(fontSize: 12.sp),
+                        hintText: "Enter Phone Number/ E-mail",
+                        contentPadding: EdgeInsets.symmetric(
+                          horizontal: 16.w,
+                          vertical: 12.h,
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: ColorsManager.primary.withOpacity(0.4),
+                          ),
+                          borderRadius: BorderRadius.circular(12.r),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: ColorsManager.primary),
+                          borderRadius: BorderRadius.circular(12.r),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 4.w),
+
+                  Container(
+                    padding: EdgeInsets.all(10.r),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12.r),
+                    ),
+                    child: Image.asset(
+                      AssetsManager.qrcode,
+                      height: 30.h,
+                      width: 30.w,
+
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ],
+              ),
+
+              SizedBox(height: 20.h),
+
+              // Add Member Button
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  // Handle member addition
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: ColorsManager.primary.withOpacity(0.85),
+                  minimumSize: Size(double.infinity, 48.h),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.r),
+                  ),
+                ),
+                child: Text(
+                  "Add Member",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16.sp,
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

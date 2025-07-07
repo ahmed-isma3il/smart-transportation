@@ -23,21 +23,21 @@ class _NotificationsPageState extends State<NotificationsPage> {
       "subtitle": "Please meet the bus outside",
       "time": null,
       "image": AssetsManager.kid2,
-      "showSwipe": false,
+      "showSwipe": true,
     },
     {
       "name": "Reem's bus is about to arrive",
       "subtitle": "2 mins left",
       "time": "2 mins left",
       "image": AssetsManager.kid2,
-      "showSwipe": false,
+      "showSwipe": true,
     },
     {
       "name": "Omar’s bus arrived!",
       "subtitle": "Please meet the bus outside",
       "time": null,
       "image": AssetsManager.kid1,
-      "showSwipe": false,
+      "showSwipe": true,
     },
     {
       "name": "Omar’s bus is about to arrive",
@@ -54,7 +54,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
       "subtitle": "Please meet the bus outside",
       "time": null,
       "image": AssetsManager.kid1,
-      "showSwipe": false,
+      "showSwipe": true,
     },
   ];
 
@@ -133,14 +133,17 @@ List<Widget> _buildBusNotifications() {
       itemBuilder: (context, index) {
         final item = todayBusNotifications[index];
         return NotificationItem(
-          key: ValueKey(item['name'] + item['subtitle']),
+          key: ValueKey('today_${item['name']}_${item['subtitle']}_$index'),
           name: item["name"],
           subtitle: item["subtitle"],
           time: item["time"],
           image: item["image"],
           showSwipe: item["showSwipe"],
-           
-          
+          onDismissed: () {
+            setState(() {
+              todayBusNotifications.removeAt(index);
+            });
+          },
         );
       },
     ),
@@ -150,21 +153,22 @@ List<Widget> _buildBusNotifications() {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: yesterdayBusNotifications.length,
-itemBuilder: (context, index) {
-  final item = todayBusNotifications[index];
-  final key = ValueKey(item['name'] + item['subtitle']);
-
-  return NotificationItem(
-    key: key,
-    name: item["name"],
-    subtitle: item["subtitle"],
-    time: item["time"],
-    image: item["image"],
-    showSwipe: item["showSwipe"],
-   
-  );
-}
-
+      itemBuilder: (context, index) {
+        final item = yesterdayBusNotifications[index];
+        return NotificationItem(
+          key: ValueKey('yesterday_${item['name']}_${item['subtitle']}_$index'),
+          name: item["name"],
+          subtitle: item["subtitle"],
+          time: item["time"],
+          image: item["image"],
+          showSwipe: item["showSwipe"],
+          onDismissed: () {
+            setState(() {
+              yesterdayBusNotifications.removeAt(index);
+            });
+          },
+        );
+      },
     ),
   ];
 }

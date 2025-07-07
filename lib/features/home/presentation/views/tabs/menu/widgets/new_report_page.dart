@@ -15,30 +15,32 @@ class _NewReportPageState extends State<NewReportPage> {
 
   final List<String> _providers = ['Security', 'Transport', 'Maintenance'];
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("New Report"),
-        leading: const BackButton(color: Colors.black),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 16.0),
-            child: Icon(Icons.mic_none_outlined, color: Colors.black),
-          ),
-        ],
-        backgroundColor: Colors.white,
-        elevation: 0,
-        centerTitle: false,
-        titleTextStyle: const TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 18,
-          color: Colors.black,
-          fontFamily: "Montserrat",
+ @override
+Widget build(BuildContext context) {
+  return Scaffold(
+    resizeToAvoidBottomInset: true, // يسمح بتحريك المحتوى فوق الكيبورد
+    appBar: AppBar(
+      title: const Text("New Report"),
+      leading: const BackButton(color: Colors.black),
+      actions: const [
+        Padding(
+          padding: EdgeInsets.only(right: 16.0),
+          child: Icon(Icons.mic_none_outlined, color: Colors.black),
         ),
+      ],
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      centerTitle: false,
+      titleTextStyle: const TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 18,
+        color: Colors.black,
+        fontFamily: "Montserrat",
       ),
-      backgroundColor: Colors.white,
-      body: Padding(
+    ),
+    backgroundColor: Colors.white,
+    body: SafeArea(
+      child: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,13 +103,12 @@ class _NewReportPageState extends State<NewReportPage> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-             onPressed: () {
-  showDialog(
-    context: context,
-    builder: (context) => ReportSentDialog(reportId: "#125"),
-  );
-},
-
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => ReportSentDialog(reportId: "#125"),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF61B6CB),
                   padding: const EdgeInsets.symmetric(vertical: 14),
@@ -128,8 +129,10 @@ class _NewReportPageState extends State<NewReportPage> {
           ],
         ),
       ),
-    );
-  }
+    ),
+  );
+}
+
 
   InputDecoration _inputDecoration() {
     return InputDecoration(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:member/core/helper/colors_manager.dart';
 import 'package:member/features/home/presentation/views/tabs/menu/widgets/show_confirm_email_dialog.dart';
 
 void showEditEmailDialog(BuildContext context) {
@@ -38,7 +39,7 @@ void showEditEmailDialog(BuildContext context) {
                         const Spacer(),
                         GestureDetector(
                           onTap: () => Navigator.pop(context),
-                          child: const Icon(Icons.close, size: 18, color: Colors.grey),
+                          child: const Icon(Icons.close, size: 18, color: ColorsManager.primary),
                         ),
                       ],
                     ),

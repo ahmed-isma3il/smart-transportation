@@ -10,7 +10,7 @@ class NotificationItem extends StatelessWidget {
   final String? time;
   final String image;
   final bool showSwipe;
-
+  final VoidCallback? onDismissed; // جديد
   const NotificationItem({
     super.key,
     required this.name,
@@ -18,6 +18,8 @@ class NotificationItem extends StatelessWidget {
     required this.image,
     this.time,
     this.showSwipe = false,
+    this.onDismissed, 
+
   });
 
   @override
@@ -114,18 +116,21 @@ class NotificationItem extends StatelessWidget {
     );
 
     // دعم السحب للحذف
-    return showSwipe
-        ? Dismissible(
-            key: UniqueKey(),
-            direction: DismissDirection.endToStart,
-            background: Container(
-              alignment: Alignment.centerRight,
-              padding: const EdgeInsets.only(right: 20),
-              color: Colors.red.shade400,
-              child: const Icon(Icons.delete, color: Colors.white),
-            ),
-            child: card,
-          )
-        : card;
+    if (showSwipe && onDismissed != null) {
+      return Dismissible(
+        key: UniqueKey(),
+        direction: DismissDirection.endToStart,
+        background: Container(
+          alignment: Alignment.centerRight,
+          padding: const EdgeInsets.only(right: 20),
+          color: Colors.red.shade400,
+          child: const Icon(Icons.delete, color: Colors.white),
+        ),
+        onDismissed: (_) => onDismissed!(),
+        child: card,
+      );
+    } else {
+      return card;
+    }
   }
 }

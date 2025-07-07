@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:member/core/helper/colors_manager.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 void showConfirmEmailDialog(BuildContext context, String email) {
 final TextEditingController codeController = TextEditingController();
@@ -32,7 +33,7 @@ final TextEditingController codeController = TextEditingController();
                     const Spacer(),
                     GestureDetector(
                       onTap: () => Navigator.pop(context),
-                      child: const Icon(Icons.close, size: 18, color: Colors.grey),
+                      child: const Icon(Icons.close, size: 18,  color: ColorsManager.primary),
                     ),
                   ],
                 ),

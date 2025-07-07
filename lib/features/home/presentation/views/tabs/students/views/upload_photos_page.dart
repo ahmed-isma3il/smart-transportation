@@ -19,7 +19,7 @@ class _UploadPhotosPageState extends State<UploadPhotosPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Upload Photos"),
+        title:   Text("Upload Photos", style: AppTextStyles.heading.copyWith(color: Colors.black,fontSize: 20),),
         leading: const BackButton(),
         elevation: 0,
         backgroundColor: Colors.white,
@@ -111,7 +111,7 @@ class _UploadPhotosPageState extends State<UploadPhotosPage> {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.blue.shade100,
+                        color: Color(0XFF5FA8D3).withOpacity(.22),
                         border: Border.all(
                           color: isSelected ? Colors.blue : Colors.transparent,
                           width: 2,

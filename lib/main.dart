@@ -16,10 +16,10 @@ class MemberApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          fontFamily: "Montserrat", // ← تغيير الخط هنا
+          fontFamily: "Montserrat",  
         ),
         onGenerateRoute: (settings) => OnGenerateRoute.router(settings),
-        initialRoute: OnGenerateRoute.home,
+        initialRoute: OnGenerateRoute.welcome,
       ),
     );
   }
