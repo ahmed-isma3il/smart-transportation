@@ -43,5 +43,8 @@ class AssetsManager {
 
   static const String language = "$baseUrl/language.png";
   static const String report = "$baseUrl/report.png";
+  static const String upload = "$baseUrl/upload.png";
+  static const String pen = "$baseUrl/pen.png";
 
 } 
+ 

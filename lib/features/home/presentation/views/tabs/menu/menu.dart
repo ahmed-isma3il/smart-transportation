@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:member/core/helper/assets_manager.dart';
+import 'package:member/core/helper/on_generate_route.dart';
 
 class MenuPage extends StatelessWidget {
   const MenuPage({super.key});
@@ -75,12 +76,16 @@ class MenuPage extends StatelessWidget {
               const SizedBox(height: 16),
 
               // --- Menu Items with images ---
-              buildMenuItem(AssetsManager.account_information, "Account Information"),
-              buildMenuItem(AssetsManager.addresses, "Addresses"),
-              buildMenuItem(AssetsManager.report, "Reports"),
-              buildMenuItem(AssetsManager.serivce_provider, "Service Provider"),
-              buildMenuItem(AssetsManager.language, "Language"),
-              buildMenuItem(AssetsManager.about_us, "About Us"),
+              buildMenuItem(AssetsManager.account_information, "Account Information",()  { Navigator.pushNamed(context, OnGenerateRoute.accountInfoPage);}),
+              // buildMenuItem(AssetsManager.addresses, "Addresses",() {
+                
+              // },),
+              buildMenuItem(AssetsManager.report, "Reports",() {
+                 Navigator.pushNamed(context, OnGenerateRoute.reportsPage);
+              },),
+              // buildMenuItem(AssetsManager.serivce_provider, "Service Provider"),
+              // buildMenuItem(AssetsManager.language, "Language"),
+              // buildMenuItem(AssetsManager.about_us, "About Us"),
 
               const Spacer(),
 
@@ -104,29 +109,27 @@ class MenuPage extends StatelessWidget {
     );
   }
 
-  static Widget buildMenuItem(String imagePath, String title) {
-    return Column(
-      children: [
-        ListTile(
-          contentPadding: EdgeInsets.zero,
-          leading: Image.asset(
-            imagePath,
-            height: 24,
-            width: 24,
-          ),
-          title: Text(
-            title,
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          onTap: () {
-            // تنفيذ التنقل هنا
-          },
+static Widget buildMenuItem(String imagePath, String title, VoidCallback onTap) {
+  return Column(
+    children: [
+      ListTile(
+        contentPadding: EdgeInsets.zero,
+        leading: Image.asset(
+          imagePath,
+          height: 24,
+          width: 24,
         ),
-        const Divider(height: 1),
-      ],
-    );
-  }
+        title: Text(
+          title,
+          style: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        onTap: onTap, // استخدم هنا مباشرة
+      ),
+      const Divider(height: 1),
+    ],
+  );
+}
 }
