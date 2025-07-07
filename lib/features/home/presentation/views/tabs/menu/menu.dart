@@ -107,7 +107,9 @@ class MenuPage extends StatelessWidget {
               buildMenuItem(AssetsManager.report, "Reports", () {
                 Navigator.pushNamed(context, OnGenerateRoute.reportsPage);
               }),
-              // buildMenuItem(AssetsManager.serivce_provider, "Service Provider"),
+              buildMenuItem(AssetsManager.serivce_provider, "Service Provider",() {
+                Navigator.pushNamed(context, OnGenerateRoute.servicesOrganizerPage);
+              },),
               buildMenuItem(AssetsManager.language, "Language", () {
                 showDialog(
                   context: context,

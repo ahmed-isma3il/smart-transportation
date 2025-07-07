@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:member/features/address_details_screen/presentation/views/address_details_screen.dart';
 import 'package:member/features/home/presentation/views/home.dart';
 import 'package:member/features/home/presentation/views/tabs/menu/views/account_info.dart';
+import 'package:member/features/home/presentation/views/tabs/menu/views/orginzer_details.dart';
 import 'package:member/features/home/presentation/views/tabs/menu/views/reports.dart';
 import 'package:member/features/home/presentation/views/tabs/menu/widgets/new_report_page.dart';
 import 'package:member/features/home/presentation/views/tabs/menu/widgets/report_details_page.dart';
+import 'package:member/features/home/presentation/views/tabs/menu/views/serives_provider.dart';
 import 'package:member/features/home/presentation/views/tabs/students/views/calendar_page.dart';
 import 'package:member/features/home/presentation/views/tabs/students/views/shared_access.dart';
 import 'package:member/features/home/presentation/views/tabs/students/views/student_information.dart';
@@ -41,9 +43,11 @@ static const String step3View = "Step4View";
    static const String newReportPage = "NewReportPage";
    static const String reportDetailsPage = "ReportDetailsPage";
    static const String locationPickerScreen = "LocationPickerScreen";
+   static const String servicesOrganizerPage = "ServicesOrganizerPage";
+   static const String orginzerDetails = "OrginzerDetails";
 
-           
-     
+            
+      
   static Route? router(RouteSettings settings) {
     switch (settings.name) {
       case welcome:
@@ -76,7 +80,10 @@ static const String step3View = "Step4View";
         return MaterialPageRoute(builder: (context) =>   AccountInfoPage());
               case reportsPage:
         return MaterialPageRoute(builder: (context) =>   ReportsPage());
-        
+                     case servicesOrganizerPage:
+        return MaterialPageRoute(builder: (context) =>   SerivesProviderPage()); 
+                  case orginzerDetails:
+        return MaterialPageRoute(builder: (context) =>   OrginzerDetails()); 
                           case locationPickerScreen:
         return MaterialPageRoute(builder: (context) =>   LocationPickerScreen());
                 case newReportPage:

@@ -20,23 +20,31 @@ class SearchWithQR extends StatelessWidget {
               border: Border.all(color: Color(0XFF5FA8D3)),
               borderRadius: BorderRadius.circular(12.r),
             ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Search for Service Provider',
-                      hintStyle: TextStyle(
-                        color: Color(0XFF5FA8D3),
-                        fontSize: 14.sp,
-                      ),
-                      border: InputBorder.none,
-                    ),
-                  ),
-                ),
-                Icon(Icons.search, color: Color(0XFF5FA8D3)),
-              ],
+            child:Row(
+  children: [
+    Expanded(
+      child: Container(
+        height: 45.h, // أو أي ارتفاع يناسب التصميم
+        alignment: Alignment.center, // مهم جداً
+        child: TextField(
+          decoration: InputDecoration(
+            hintText: 'Search for Service Provider',
+            hintStyle: TextStyle(
+              color: Color(0XFF5FA8D3),
+              fontSize: 14.sp,
             ),
+            border: InputBorder.none,
+            contentPadding: EdgeInsets.symmetric(vertical: 0), // مهم جداً
+            isCollapsed: true, // يخلي الحقل يلتزم بالـcontentPadding بالضبط
+          ),
+        ),
+      ),
+    ),
+    Icon(Icons.search, color: Color(0XFF5FA8D3)),
+  ],
+),
+
+
           ),
         ),
 
