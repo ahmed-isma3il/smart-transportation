@@ -101,9 +101,10 @@ class MenuPage extends StatelessWidget {
                   Navigator.pushNamed(context, OnGenerateRoute.accountInfoPage);
                 },
               ),
-              // buildMenuItem(AssetsManager.addresses, "Addresses",() {
+              buildMenuItem(AssetsManager.addresses, "Addresses",() {
+                Navigator.pushNamed(context, OnGenerateRoute.serviceaddressespage);
 
-              // },),
+              },),
               buildMenuItem(AssetsManager.report, "Reports", () {
                 Navigator.pushNamed(context, OnGenerateRoute.reportsPage);
               }),

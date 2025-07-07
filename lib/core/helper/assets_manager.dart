@@ -50,8 +50,9 @@ class AssetsManager {
     static const String reem = "$baseUrl/reem.png";
     static const String person = "$baseUrl/person.png";
     static const String  huge_icon = "$baseUrl/Huge-icon.png";
+    static const String  set_location = "$baseUrl/set_location.png";
 
 
  
-} 
+}  
  

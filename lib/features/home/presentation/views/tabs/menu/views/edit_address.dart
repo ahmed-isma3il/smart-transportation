@@ -1,45 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:member/config/app_text_styles.dart';
 import 'package:member/core/helper/assets_manager.dart';
-import 'package:member/core/helper/on_generate_route.dart';
+import 'package:member/features/home/presentation/views/tabs/menu/widgets/address_guardian_form.dart';
 import 'package:member/features/location_picker/presentation/views/location_picker.dart';
 
-class AddressDetailsScreen extends StatelessWidget {
-  const AddressDetailsScreen({super.key});
+class EditAddress extends StatelessWidget {
+  const EditAddress({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
+    return   Scaffold(
+           backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        iconTheme: IconThemeData(color: Colors.black),
+        elevation: 0,
+        leading: const BackButton(color: Colors.black),
         title: Text(
-          "Address Details",
-          style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
+          'Edit address',
+          style: AppTextStyles.heading.copyWith(color: Colors.black,fontSize: 20.sp)
         ),
+ 
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
-          child: SingleChildScrollView(
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.blue.shade100),
-                borderRadius: BorderRadius.circular(20.r),
-              ),
-              padding: EdgeInsets.all(16.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // ⬅ Back + Title
-                  SizedBox(height: 24.h),
-
-                  // 🌍 OpenStreetMap
-               Stack(children: [
+      body: SingleChildScrollView(
+        child: Column(children: [
+         
+                  Padding(
+                    padding: const EdgeInsets.only(top:  33.0,left: 33, right: 33),
+                    child:  Stack(children: [
                       Container(
                               height: 160,
                               width: double.infinity,
@@ -108,79 +98,23 @@ class AddressDetailsScreen extends StatelessWidget {
                               ),
                             ),
                     ],)
-,                  SizedBox(height: 24.h),
-
-                  // Form Fields
-                  _buildLabel("City:"),
-                  _buildTextField(),
-
-                  _buildLabel("Area:"),
-                  _buildTextField(),
-
-                  _buildLabel("Street Number:"),
-                  _buildTextField(),
-
-                  _buildLabel("Apartment:"),
-                  _buildTextField(),
-
-                  _buildLabel("Additional Details:"),
-                  _buildTextField(minLines: 3, maxLines: 3),
-
-                  SizedBox(height: 24.h),
-
-                  // 🔵 Next Button
-                  SizedBox(
-                    width: double.infinity,
-                    height: 44.h,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(
-                          context,
-                          OnGenerateRoute.requestSent,
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF63A8D3),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.r),
-                        ),
-                      ),
-                      child: const Text(
-                        "Next",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
                   ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildLabel(String text) {
-    return Padding(
-      padding: EdgeInsets.only(top: 16.h, bottom: 6.h),
-      child: Text(text, style: AppTextStyles.semiBold),
-    );
-  }
-
-  Widget _buildTextField({int minLines = 1, int maxLines = 1}) {
-    return TextFormField(
-      minLines: minLines,
-      maxLines: maxLines,
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 12.w),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.r),
-          borderSide: BorderSide(color: Colors.blue.shade100),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.r),
-          borderSide: BorderSide(color: Colors.blue.shade200),
-        ),
+        
+                    SizedBox(height: 24.h),
+                    AddressGuardianForm(
+          city: "Mansoura",
+          area: "Gehan Street",
+          streetNumber: "12",
+          apartmentController: TextEditingController(text: "1"),
+          guardianNameController: TextEditingController(text: "Eman"),
+          guardianPhoneController: TextEditingController(text: "+20 1127364598"),
+          onSave: () {
+            // logic
+          },
+        )
+        
+        
+        ],),
       ),
     );
   }
