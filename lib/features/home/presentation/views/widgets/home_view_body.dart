@@ -9,7 +9,7 @@ import 'package:member/features/home/presentation/views/widgets/kids_card_list_v
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
 
-  final bool hasActiveTrip = false;  
+  final bool hasActiveTrip = true;  
 
   @override
   Widget build(BuildContext context) {

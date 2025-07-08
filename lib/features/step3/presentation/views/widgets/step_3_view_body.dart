@@ -8,8 +8,7 @@ import 'package:member/features/welcome/presentation/views/widget/steps_progress
 class Step3ViewBody extends StatelessWidget {
   const Step3ViewBody({super.key});
 
-
-  final int currentStep =2;
+  final int currentStep = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +18,12 @@ class Step3ViewBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 136.h),
-          Center(child: Text("You're now about to Finish!", style: AppTextStyles.heading)),
+          Center(
+            child: Text(
+              "You're now about to Finish!",
+              style: AppTextStyles.heading,
+            ),
+          ),
           SizedBox(height: 40.h),
           Center(
             child: Text(
@@ -30,20 +34,23 @@ class Step3ViewBody extends StatelessWidget {
             ),
           ),
           SizedBox(height: 60.h),
-StepsProgress(
-  currentStep: 2,
-  steps: [
-    StepData(title: "Join Service Provider"),
-    StepData(title: "Add Student’s Details"),
-    StepData(title: "Add Address"),
-  ],
-),
+          StepsProgress(
+            currentStep: 2,
+            steps: [
+              StepData(title: "Join Service Provider"),
+              StepData(title: "Add Student’s Details"),
+              StepData(title: "Add Address"),
+            ],
+          ),
 
           Spacer(flex: 2),
           Center(
             child: GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, OnGenerateRoute.addressDetailsScreen);
+                Navigator.pushNamed(
+                  context,
+                  OnGenerateRoute.addressDetailsScreen,
+                );
               },
               child: Container(
                 height: 42.h,

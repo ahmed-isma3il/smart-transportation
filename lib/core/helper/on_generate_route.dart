@@ -57,8 +57,6 @@ class OnGenerateRoute {
   static const String editAddress = "EditAddress";
 
   static const String qrScannerScreen = "QRScannerScreen";
-  
- 
 
   static Route? router(RouteSettings settings) {
     switch (settings.name) {
@@ -104,13 +102,13 @@ class OnGenerateRoute {
         return MaterialPageRoute(builder: (context) => AddressesPage());
       case newReportPage:
         return MaterialPageRoute(builder: (context) => NewReportPage());
-              case locationMapScreen:
+      case locationMapScreen:
         return MaterialPageRoute(builder: (context) => LocationMapScreen());
-                   case editAddress:
+      case editAddress:
         return MaterialPageRoute(builder: (context) => EditAddress());
-                      case addressOverview:
+      case addressOverview:
         return MaterialPageRoute(builder: (context) => AddressOverview());
-                            case qrScannerScreen:
+      case qrScannerScreen:
         return MaterialPageRoute(builder: (context) => QRScannerScreen());
       case reportDetailsPage:
         final args = settings.arguments as Map<String, dynamic>;

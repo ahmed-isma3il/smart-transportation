@@ -31,7 +31,7 @@ class MemberApp extends StatelessWidget {
           fontFamily: "Montserrat",  
         ),
         onGenerateRoute: (settings) => OnGenerateRoute.router(settings),
-        initialRoute: OnGenerateRoute.home,
+        initialRoute: OnGenerateRoute.welcome,
       ),
     );
   }

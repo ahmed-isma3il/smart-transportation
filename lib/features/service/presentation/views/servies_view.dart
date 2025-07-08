@@ -4,7 +4,7 @@ import 'package:member/features/welcome/presentation/views/widget/welcome_view_b
 
 class ServicesView extends StatelessWidget {
   ServicesView({super.key,  this.isInSettings});
-bool ? isInSettings ;
+bool ? isInSettings =false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

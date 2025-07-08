@@ -38,7 +38,10 @@ class SerivesProviderPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, OnGenerateRoute.orginzerDetails);
+                      Navigator.pushNamed(
+                        context,
+                        OnGenerateRoute.orginzerDetails,
+                      );
                     },
 
                     child: const ServicesOrganizerCard(
@@ -55,7 +58,12 @@ class SerivesProviderPage extends StatelessWidget {
               height: 48.h,
               child: ElevatedButton(
                 onPressed: () {
-   Navigator.pushReplacement(context ,MaterialPageRoute(builder: (context) => ServicesView(isInSettings: true,),));
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ServicesView(isInSettings: true),
+                    ),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: ColorsManager.primary,

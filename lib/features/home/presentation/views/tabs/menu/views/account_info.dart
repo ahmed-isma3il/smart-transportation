@@ -17,101 +17,103 @@ class AccountInfoPage extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 12),
-
-              // --- Top bar ---
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Icon(Icons.arrow_back, size: 20),
-                  ),
-                  SizedBox(width: 16.w),
-                  Text(
-                    'Account Info',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  Spacer(),
-                  Icon(Icons.mic_none),
-                ],
-              ),
-
-              const SizedBox(height: 24),
-
-              // --- Profile photo ---
-              Center(
-                child: Column(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 12),
+            
+                // --- Top bar ---
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    CircleAvatar(
-                      radius: 50,
-                      backgroundImage: AssetImage(AssetsManager.profile),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(Icons.arrow_back, size: 20),
                     ),
-                    const SizedBox(height: 12),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          AssetsManager.upload,
-                          height: 20.h,
-                          width: 18.w,
-                        ),
-                        SizedBox(width: 6),
-                        GestureDetector(
-                          onTap: () => showUploadPhotoDialog(context),
-                          child: Text(
-                            "Upload new photo",
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Color(0XFF000000),
-                              fontFamily: "Montserrat",
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ),
-                      ],
+                    SizedBox(width: 16.w),
+                    Text(
+                      'Account Info',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
+                    Spacer(),
+                    Icon(Icons.mic_none),
                   ],
                 ),
-              ),
-
-              const SizedBox(height: 32),
-
-              // --- Name ---
-              buildField(title: "Name:", value: "Maryam", context: context),
-
-              const SizedBox(height: 16),
-
-              // --- Phone Number ---
-              buildField(
-                title: "Phone Number:",
-                value: "+20 99999999",
-                context: context,
-              ),
-
-              const SizedBox(height: 16),
-
-              // --- Email ---
-              buildField(
-                title: "E-mail:",
-                value: "aaaaa@gmail.com",
-                context: context,
-              ),
-
-              const SizedBox(height: 16),
-
-              // --- Password ---
-              buildField(
-                title: "Password:",
-                value: "********",
-                context: context,
-              ),
-            ],
+            
+                const SizedBox(height: 24),
+            
+                // --- Profile photo ---
+                Center(
+                  child: Column(
+                    children: [
+                      CircleAvatar(
+                        radius: 50,
+                        backgroundImage: AssetImage(AssetsManager.profile),
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            AssetsManager.upload,
+                            height: 20.h,
+                            width: 18.w,
+                          ),
+                          SizedBox(width: 6),
+                          GestureDetector(
+                            onTap: () => showUploadPhotoDialog(context),
+                            child: Text(
+                              "Upload new photo",
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0XFF000000),
+                                fontFamily: "Montserrat",
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+            
+                const SizedBox(height: 32),
+            
+                // --- Name ---
+                buildField(title: "Name:", value: "Maryam", context: context),
+            
+                const SizedBox(height: 16),
+            
+                // --- Phone Number ---
+                buildField(
+                  title: "Phone Number:",
+                  value: "+20 99999999",
+                  context: context,
+                ),
+            
+                const SizedBox(height: 16),
+            
+                // --- Email ---
+                buildField(
+                  title: "E-mail:",
+                  value: "aaaaa@gmail.com",
+                  context: context,
+                ),
+            
+                const SizedBox(height: 16),
+            
+                // --- Password ---
+                buildField(
+                  title: "Password:",
+                  value: "********",
+                  context: context,
+                ),
+              ],
+            ),
           ),
         ),
       ),

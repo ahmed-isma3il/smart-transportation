@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:member/config/app_text_styles.dart';
 import 'package:member/core/helper/colors_manager.dart';
 import 'package:member/core/helper/on_generate_route.dart';
+import 'package:member/features/service/presentation/views/servies_view.dart';
 import 'package:member/features/welcome/presentation/views/widget/steps_progress.dart';
 import 'package:member/features/welcome/presentation/views/widget/show_terms_dialog.dart';
 
@@ -34,20 +35,20 @@ class _WelcomeViewBodyState extends State<WelcomeViewBody> {
           ),
           SizedBox(height: 60.h),
 
-    StepsProgress(
-  currentStep: 0,
-  steps: [
-    StepData(title: "Join Service Provider"),
-    StepData(title: "Add Student’s Details"),
-    StepData(title: "Add Address"),
-  ],
-),
+          StepsProgress(
+            currentStep: 0,
+            steps: [
+              StepData(title: "Join Service Provider"),
+              StepData(title: "Add Student’s Details"),
+              StepData(title: "Add Address"),
+            ],
+          ),
 
           Spacer(flex: 2),
           Center(
             child: GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, OnGenerateRoute.servicesView);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ServicesView(isInSettings: false,)));
               },
               child: Container(
                 height: 42.h,

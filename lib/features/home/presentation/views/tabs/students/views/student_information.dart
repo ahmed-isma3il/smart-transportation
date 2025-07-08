@@ -11,10 +11,11 @@ class StudentInformationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Student’s information",
-        
- 
-         style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20)),
+        title: const Text(
+          "Student’s information",
+
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        ),
         leading: const BackButton(),
         elevation: 0,
         backgroundColor: Colors.white,
@@ -29,7 +30,7 @@ class StudentInformationPage extends StatelessWidget {
               children: [
                 // الخلفية المائلة
                 Transform.rotate(
-                  angle: -0.07 ,
+                  angle: -0.07,
                   child: Container(
                     height: 630,
                     width: 320,
@@ -39,7 +40,7 @@ class StudentInformationPage extends StatelessWidget {
                     ),
                   ),
                 ),
-            
+
                 // النموذج الأساسي
                 Container(
                   width: 320,
@@ -62,33 +63,39 @@ class StudentInformationPage extends StatelessWidget {
                       Stack(
                         alignment: Alignment.center,
                         children: [
-                       Text(
-                        "Omar",
-                        style: AppTextStyles.heading.copyWith(
-                          color: Color(0XFF1B4865),
-                          fontSize: 20,
-                        ),
-                      ),
+                          Text(
+                            "Omar",
+                            style: AppTextStyles.heading.copyWith(
+                              color: Color(0XFF1B4865),
+                              fontSize: 20,
+                            ),
+                          ),
                           Positioned(
                             right: 10,
                             child: GestureDetector(
-                              
                               onTap: () {
-                                Navigator.pushNamed(context, OnGenerateRoute.uploadPhotosPage);
+                                Navigator.pushNamed(
+                                  context,
+                                  OnGenerateRoute.uploadPhotosPage,
+                                );
                               },
-                              child: Image.asset(AssetsManager.photo))
+                              child: Image.asset(AssetsManager.photo),
+                            ),
                           ),
                         ],
                       ),
                       const SizedBox(height: 16),
-            
+
                       // الاسم
-                        Align(
+                      Align(
                         alignment: Alignment.centerLeft,
-                        child: Text("Name:",  style: AppTextStyles.heading.copyWith(
-                          color: Color(0XFF000000),
-                          fontSize: 14,
-                        ),),
+                        child: Text(
+                          "Name:",
+                          style: AppTextStyles.heading.copyWith(
+                            color: Color(0XFF000000),
+                            fontSize: 14,
+                          ),
+                        ),
                       ),
                       const SizedBox(height: 4),
                       TextFormField(
@@ -96,80 +103,91 @@ class StudentInformationPage extends StatelessWidget {
                         decoration: _inputDecoration(),
                       ),
                       const SizedBox(height: 12),
-            
+
                       // المزود
-                        Align(
+                      Align(
                         alignment: Alignment.centerLeft,
-                        child: Text("Service Provider:",style: AppTextStyles.heading.copyWith(
-                          color: Color(0XFF000000),
-                          fontSize: 14,
-                        ),),
+                        child: Text(
+                          "Service Provider:",
+                          style: AppTextStyles.heading.copyWith(
+                            color: Color(0XFF000000),
+                            fontSize: 14,
+                          ),
+                        ),
                       ),
                       const SizedBox(height: 4),
-                   Material(
-  type: MaterialType.transparency,
-  child: DropdownButtonFormField<String>(
-    dropdownColor: Colors.white,
-    items: ["Provider A", "Provider B"]
-        .map((provider) => DropdownMenuItem(
-              value: provider,
-              child: Text(provider),
-            ))
-        .toList(),
-    onChanged: (value) {},
-    decoration: _inputDecoration(),
-  ),
-),
+                      Material(
+                        type: MaterialType.transparency,
+                        child: DropdownButtonFormField<String>(
+                          dropdownColor: Colors.white,
+                          items:
+                              ["Provider A", "Provider B"]
+                                  .map(
+                                    (provider) => DropdownMenuItem(
+                                      value: provider,
+                                      child: Text(provider),
+                                    ),
+                                  )
+                                  .toList(),
+                          onChanged: (value) {},
+                          decoration: _inputDecoration(),
+                        ),
+                      ),
 
                       const SizedBox(height: 12),
-            
+
                       // العنوان الافتراضي
-                        Align(
+                      Align(
                         alignment: Alignment.centerLeft,
-                        child: Text("Default Address:",style: AppTextStyles.heading.copyWith(
-                          color: Color(0XFF000000),
-                          fontSize: 14,
-                        ),),
+                        child: Text(
+                          "Default Address:",
+                          style: AppTextStyles.heading.copyWith(
+                            color: Color(0XFF000000),
+                            fontSize: 14,
+                          ),
+                        ),
                       ),
                       const SizedBox(height: 4),
                       DropdownButtonFormField<String>(
-                          dropdownColor: Colors.white,
+                        dropdownColor: Colors.white,
                         value: "Mansoura , Gehan Street",
-                        items: [
-                          "Mansoura , Gehan Street",
-                          "Address 2",
-                          "Address 3",
-                        ]
-                            .map((address) => DropdownMenuItem(
-                                  value: address,
-                                  child: Text(address),
-                                ))
-                            .toList(),
+                        items:
+                            [
+                                  "Mansoura , Gehan Street",
+                                  "Address 2",
+                                  "Address 3",
+                                ]
+                                .map(
+                                  (address) => DropdownMenuItem(
+                                    value: address,
+                                    child: Text(address),
+                                  ),
+                                )
+                                .toList(),
                         onChanged: (value) {},
                         decoration: _inputDecoration(),
                       ),
                       const SizedBox(height: 12),
-            
+
                       // ملاحظات عن الإعاقة
-                        Align(
+                      Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "If the student has disability , please provide us with further details:",
-                        
-                        style: AppTextStyles.heading.copyWith(
-                          color: Color(0XFF000000),
-                          fontSize: 14,
-                        ),
+
+                          style: AppTextStyles.heading.copyWith(
+                            color: Color(0XFF000000),
+                            fontSize: 14,
+                          ),
                         ),
                       ),
                       const SizedBox(height: 4),
                       TextFormField(
-                     
                         maxLines: 4,
                         decoration: _inputDecoration(hint: "Optional"),
                       ),
                       const SizedBox(height: 20),
-            
+
                       // زر Save
                       SizedBox(
                         width: double.infinity,
@@ -182,27 +200,42 @@ class StudentInformationPage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(8),
                             ),
                           ),
-                          child:   Text("Save",   style: AppTextStyles.heading.copyWith(color: Colors.white,fontSize: 14),),
+                          child: Text(
+                            "Save",
+                            style: AppTextStyles.heading.copyWith(
+                              color: Colors.white,
+                              fontSize: 14,
+                            ),
+                          ),
                         ),
                       ),
                       const SizedBox(height: 8),
-            
+
                       // زر Shared Access
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, OnGenerateRoute.sharedAccessPage);
+                            Navigator.pushNamed(
+                              context,
+                              OnGenerateRoute.sharedAccessPage,
+                            );
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor:   ColorsManager.primary,
+                            backgroundColor: ColorsManager.primary,
                             foregroundColor: Colors.black,
                             padding: const EdgeInsets.symmetric(vertical: 12),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
                             ),
                           ),
-                          child:   Text("Shared Access",  style: AppTextStyles.heading.copyWith(color: Colors.white,fontSize: 14),),
+                          child: Text(
+                            "Shared Access",
+                            style: AppTextStyles.heading.copyWith(
+                              color: Colors.white,
+                              fontSize: 14,
+                            ),
+                          ),
                         ),
                       ),
                     ],

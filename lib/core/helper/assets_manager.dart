@@ -23,7 +23,7 @@ class AssetsManager {
   static const String driver_icon = "$baseUrl/driver_icon.png";
   static const String card_icon = "$baseUrl/card_icon.png";
   static const String driver_bus_icon = "$baseUrl/driver_bus_icon.png";
- 
+
   static const String profile = "$baseUrl/profile.png";
   static const String school_icon = "$baseUrl/school_icon.png";
   static const String home_icon = "$baseUrl/home_icon.png";
@@ -47,12 +47,8 @@ class AssetsManager {
   static const String pen = "$baseUrl/pen.png";
   static const String qr = "$baseUrl/qr.png";
   static const String omar = "$baseUrl/omar.png";
-    static const String reem = "$baseUrl/reem.png";
-    static const String person = "$baseUrl/person.png";
-    static const String  huge_icon = "$baseUrl/Huge-icon.png";
-    static const String  set_location = "$baseUrl/set_location.png";
-
-
- 
-}  
- 
+  static const String reem = "$baseUrl/reem.png";
+  static const String person = "$baseUrl/person.png";
+  static const String huge_icon = "$baseUrl/Huge-icon.png";
+  static const String set_location = "$baseUrl/set_location.png";
+}

@@ -3,9 +3,25 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:member/config/app_text_styles.dart';
 import 'package:member/core/helper/assets_manager.dart';
 import 'package:member/core/helper/colors_manager.dart';
+import 'package:member/core/helper/on_generate_route.dart';
 
-class RequestIsPending extends StatelessWidget {
+class RequestIsPending extends StatefulWidget {
   const RequestIsPending({super.key});
+
+  @override
+  State<RequestIsPending> createState() => _RequestIsPendingState();
+}
+
+class _RequestIsPendingState extends State<RequestIsPending> {
+    @override
+  void initState() {
+    super.initState();
+
+    // تأخير 3 ثواني ثم الانتقال لصفحة أخرى
+    Future.delayed(Duration(seconds: 3), () {
+      Navigator.pushReplacementNamed(context, OnGenerateRoute.home); // غير '/home' للمسار اللي عندك
+    });
+  }
 
   void _showSwitchAccountDialog(BuildContext context) {
   showDialog(

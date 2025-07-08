@@ -168,7 +168,7 @@ class _ServicesViewBodyState extends State<ServicesViewBody> {
               onTap:
                   selectedIndex != null
                       ? () {
-                     !widget.isInSettings! ?   Navigator.pushReplacementNamed(
+                     !widget.isInSettings!  ?   Navigator.pushReplacementNamed(
                           context,
                           OnGenerateRoute.step2View,
                         ) :  Navigator.pushReplacementNamed(
